@@ -20,4 +20,40 @@ public class Endereco {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "unidade_id")
     private UnidadeDeDoacao unidadeDeDoacao;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getLogradouro() {
+        return logradouro;
+    }
+
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public UnidadeDeDoacao getUnidadeDeDoacao() {
+        return unidadeDeDoacao;
+    }
+
+    public void setUnidadeDeDoacao(UnidadeDeDoacao unidadeDeDoacao) {
+        this.unidadeDeDoacao = unidadeDeDoacao;
+    }
 }

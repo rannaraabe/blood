@@ -17,6 +17,7 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
+
     public ResponseEntity<Usuario> cadastrarUsuario (@RequestBody UsuarioIncomingDTO usuario) {
         Usuario usuarioASerCadastrado = new Usuario();
 
