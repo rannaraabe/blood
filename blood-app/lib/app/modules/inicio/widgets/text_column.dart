@@ -14,30 +14,33 @@ class TextColumn extends StatelessWidget {
         children: [
           Text(
             'Seu sangue pode',
-            style: AppTheme.style2,
+            style: AppTheme.bold_large,
           ),
           Text(
             'salvar vidas!',
-            style: AppTheme.style2,
+            style: AppTheme.bold_large,
           ),
           SizedBox(
-            height: 8,
+            height: 10,
+          ),
+          Text(
+            '',
           ),
           Text(
             'Junte-se à nós e encontre os',
-            style: AppTheme.style3,
+            style: AppTheme.regular_medium,
           ),
           Text(
             'lugares mais próximos para',
-            style: AppTheme.style3,
+            style: AppTheme.regular_medium,
           ),
           Text(
             'fazer a sua doação de sangue.',
-            style: AppTheme.style3,
+            style: AppTheme.regular_medium,
           ),
           Text(
             'Faça parte desse ato de amor.',
-            style: AppTheme.style3,
+            style: AppTheme.regular_medium,
           ),
         ],
       ),

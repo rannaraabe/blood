@@ -15,7 +15,6 @@ class InicioPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
                 Image.asset('assets/images/inicio_image.png'),
                 Spacer(),
                 TextColumn(),

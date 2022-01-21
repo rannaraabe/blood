@@ -6,20 +6,20 @@ class AppTheme {
   /// Black #000000
   static const black = Color(0xFF000000);
 
-  static const TextStyle style1 = TextStyle(
-    fontSize: 17,
+  /// TextStyle names: style-font + size + color (when it isn't default)
+  static const TextStyle regular_small_white = TextStyle(
+    fontSize: 18,
     fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeight.w500,
     color: Colors.white,
   );
 
-  static const TextStyle style2 = TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w900,
+  static const TextStyle bold_large = TextStyle(
+    fontSize: 32,
+    fontWeight: FontWeight.bold,
   );
 
-  static const TextStyle style3 = TextStyle(
-    fontSize: 19,
+  static const TextStyle regular_medium = TextStyle(
+    fontSize: 22,
   );
-
 }

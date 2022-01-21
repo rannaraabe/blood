@@ -29,7 +29,7 @@ class InicioButton extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(23.0),
+          borderRadius: BorderRadius.circular(18.0),
           color: AppTheme.black,
         ),
         child: Row(
@@ -37,7 +37,7 @@ class InicioButton extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: AppTheme.style1,
+                style: AppTheme.regular_small_white,
                 textAlign: TextAlign.center,
               ),
             )
