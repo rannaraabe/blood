@@ -10,7 +10,6 @@ class CadastroPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    // TODO: adicionar botão de voltar
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Container(
@@ -21,6 +20,14 @@ class CadastroPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
+                  Row(
+                    // TODO: adicionar ação no botão de voltar
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                          child: Icon(Icons.arrow_back_ios)),
+                    ],
+                  ),
                   TextColumn(),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 25, 0, 15),
@@ -47,7 +54,8 @@ class CadastroPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    // TODO: abrir DatePicker ao clicar no icon do calendário
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                     child: TextGeneral(
                       height: height * 0.06,
                       width: width * 0.8,
@@ -56,22 +64,25 @@ class CadastroPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                      //FIXME: fazer toggle ser botão de ação  ajustar o tamanho e cor do texto
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: RichText(
-                        text: TextSpan(
-                          style: AppTheme.regular_medium,
-                          children: [
-                            WidgetSpan(
-                              child:
-                                  Icon(Icons.toggle_off, color: Colors.black26),
-                            ),
-                            TextSpan(text: 'Já sou doador de sangue'),
-                          ],
+                    // TODO: adicionar ação ao clicar no icon de Toggle
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: Wrap(
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.toggle_off,
+                          color: Colors.black26,
+                          size: 60,
                         ),
-                      )),
+                        Text(
+                          ' Já sou doador de sangue                   ',
+                          style: TextStyle(fontSize: 16, color: Colors.black26),
+                        ),
+                      ],
+                    ),
+                  ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 25),
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                     child: InicioButton(
                       height: height * 0.06,
                       width: width * 0.8,
