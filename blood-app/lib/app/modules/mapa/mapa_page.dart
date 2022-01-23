@@ -7,10 +7,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:latlong2/latlong.dart';
 
 class MapaPage extends StatelessWidget {
-  double long = 49.5;
-  double lat = -0.09;
-  LatLng point = LatLng(49.5, -0.09);
-  var location = [];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +26,17 @@ class _MapAppState extends State<MapApp> {
   double long = 49.5;
   double lat = -0.09;
   LatLng point = LatLng(49.5, -0.09);
-  var locations = [];
+  Marker currentDonationCenter = Marker(
+    width: 80.0,
+    height: 80.0,
+    point: LatLng(-5.80601000, -35.20650000),
+    builder: (ctx) => Container(
+      child: Icon(
+        Icons.location_on_rounded,
+        color: Colors.red,
+      ),
+    ),
+  );
 
   @override
   void initState() {
@@ -47,7 +53,9 @@ class _MapAppState extends State<MapApp> {
             future: _determinePosition(),
             builder: (context, snapshot) {
               if (!snapshot.hasData) {
-                return CircularProgressIndicator();
+                return Center(
+                  child: CircularProgressIndicator(color: Colors.red[400]),
+                );
               } else if (snapshot.hasData) {
                 if (snapshot.hasData) {
                   final latitude = snapshot.data!.latitude;
@@ -56,7 +64,7 @@ class _MapAppState extends State<MapApp> {
                   return FlutterMap(
                     options: MapOptions(
                       center: LatLng(-5.80601000, -35.20650000),
-                      zoom: 25.0,
+                      zoom: 18.0,
                     ),
                     layers: [
                       TileLayerOptions(
@@ -64,19 +72,7 @@ class _MapAppState extends State<MapApp> {
                               "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                           subdomains: ['a', 'b', 'c']),
                       MarkerLayerOptions(
-                        markers: [
-                          Marker(
-                            width: 80.0,
-                            height: 80.0,
-                            point: LatLng(-5.80601000, -35.20650000),
-                            builder: (ctx) => Container(
-                              child: Icon(
-                                Icons.location_on_rounded,
-                                color: Colors.red,
-                              ),
-                            ),
-                          )
-                        ],
+                        markers: [currentDonationCenter],
                       ),
                     ],
                   );
@@ -127,9 +123,6 @@ class _MapAppState extends State<MapApp> {
     // Test if location services are enabled.
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      // Location services are not enabled don't continue
-      // accessing the position and request users of the
-      // App to enable the location services.
       return Future.error('Location services are disabled.');
     }
 
@@ -137,11 +130,6 @@ class _MapAppState extends State<MapApp> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        // Permissions are denied, next time you could try
-        // requesting permissions again (this is also where
-        // Android's shouldShowRequestPermissionRationale
-        // returned true. According to Android guidelines
-        // your App should show an explanatory UI now.
         return Future.error('Location permissions are denied');
       }
     }
@@ -157,39 +145,3 @@ class _MapAppState extends State<MapApp> {
     return await Geolocator.getCurrentPosition();
   }
 }
-
-
-
-
-
-
-
-
-
-/* return FlutterMap(
-              options: MapOptions(
-                center: LatLng(data.latitude, !data.longitude.isNaN ? data.longitude : -0.09 ),
-                zoom: 5.0,
-              ),
-              layers: [
-                TileLayerOptions(
-                    urlTemplate:
-                        "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                    subdomains: ['a', 'b', 'c']),
-                MarkerLayerOptions(
-                  markers: [
-                    Marker(
-                      width: 80.0,
-                      height: 80.0,
-                      point: point,
-                      builder: (ctx) => Container(
-                        child: Icon(
-                          Icons.location_on,
-                          color: Colors.red,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ],
-            ) */
