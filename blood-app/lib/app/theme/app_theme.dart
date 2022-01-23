@@ -60,4 +60,11 @@ class AppTheme {
   static const TextStyle regular_medium = TextStyle(
     fontSize: 22,
   );
+
+  static const TextStyle semibold_small_white = TextStyle(
+    fontSize: 13,
+    fontFamily: 'IBM Plex Sans',
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
+  );
 }
