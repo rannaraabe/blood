@@ -23,6 +23,7 @@ class InicioPage extends StatelessWidget {
                   height: height * 0.06,
                   width: width * 0.8,
                   text: 'Comece aqui',
+                  provider: true,
                 ),
                 Spacer(),
                 Image.asset('assets/images/blood_drop.png'),

@@ -10,20 +10,24 @@ class InicioButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.text,
+    required this.provider,
   }) : super(key: key);
 
   final double height;
   final double width;
   final String text;
+  final bool provider;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         // Provider(provedor de código): abstrai o padrão singleton => instância única para o app inteiro
-        final provider =
-            Provider.of<GoogleSignInProvider>(context, listen: false);
-        provider.googleLogIn();
+        if (provider) {
+          final provider =
+              Provider.of<GoogleSignInProvider>(context, listen: false);
+          provider.googleLogIn();
+        }
       },
       child: Container(
         height: height,
