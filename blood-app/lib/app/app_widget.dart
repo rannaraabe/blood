@@ -24,7 +24,8 @@ class _AppWidgetState extends State<AppWidget> {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(backgroundColor: Color(0xFFFF0032)),
+      theme: ThemeData(
+          backgroundColor: Color(0xFFFF0032), fontFamily: 'IBM Plex Sans'),
     ).modular();
   }
 }

@@ -15,7 +15,6 @@ class InicioPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Spacer(),
                 Image.asset('assets/images/inicio_image.png'),
                 Spacer(),
                 TextColumn(),
@@ -24,6 +23,7 @@ class InicioPage extends StatelessWidget {
                   height: height * 0.06,
                   width: width * 0.8,
                   text: 'Comece aqui',
+                  provider: true,
                 ),
                 Spacer(),
                 Image.asset('assets/images/blood_drop.png'),
