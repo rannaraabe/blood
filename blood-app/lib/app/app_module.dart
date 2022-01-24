@@ -14,5 +14,6 @@ class AppModule extends Module {
     ModuleRoute(Modular.initialRoute, module: InicioModule()),
     ModuleRoute('/cadastro', module: CadastroModule()),
     ModuleRoute('/feed', module: FeedModule()),
+    ModuleRoute('/mapa', module: MapaModule())
   ];
 }

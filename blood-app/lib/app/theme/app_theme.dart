@@ -53,7 +53,6 @@ class AppTheme {
     color: Colors.white,
   );
 
-
   static const TextStyle bold_large = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
@@ -69,8 +68,15 @@ class AppTheme {
     color: Colors.white,
     fontWeight: FontWeight.w600,
   );
-  
-  static const TextStyle style4 = TextStyle(
+
+  static const TextStyle style_white = TextStyle(
+    fontSize: 17,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  static const TextStyle style_black = TextStyle(
     fontSize: 17,
     fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeight.w500,
@@ -82,5 +88,5 @@ class AppTheme {
     fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeight.w800,
     color: strongRed,
-   );
+  );
 }

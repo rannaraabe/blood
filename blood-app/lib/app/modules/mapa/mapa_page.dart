@@ -244,14 +244,14 @@ class _MapAppState extends State<MapApp> {
                                                   distanceToCLoserUnit
                                                       .toStringAsFixed(2) +
                                                   "km",
-                                              style: AppTheme.style4,
+                                              style: AppTheme.style_black,
                                               textAlign: TextAlign.start,
                                             )
                                           ],
                                         )
                                       : Text(
                                           "Encontre a unidade mais próxima",
-                                          style: AppTheme.style1,
+                                          style: AppTheme.style_white,
                                           textAlign: TextAlign.center,
                                         ))
                             ],
