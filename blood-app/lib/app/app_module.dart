@@ -1,3 +1,4 @@
+import 'package:blood_app/app/modules/mapa/mapa_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'modules/feed/feed_module.dart';
