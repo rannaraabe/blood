@@ -5,6 +5,7 @@ class AppTheme {
 
   /// Black #000000
   static const black = Color(0xFF000000);
+  static const strongRed = Color.fromARGB(255, 255, 0, 50);
 
   static const TextStyle style1 = TextStyle(
     fontSize: 17,
@@ -22,4 +23,17 @@ class AppTheme {
     fontSize: 19,
   );
 
+  static const TextStyle style4 = TextStyle(
+    fontSize: 17,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
+
+  static const TextStyle redTitle = TextStyle(
+    fontSize: 18,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w800,
+    color: strongRed,
+  );
 }
