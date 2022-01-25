@@ -143,7 +143,8 @@ class AppTheme {
     fontWeight: FontWeight.w500,
     fontFamily: 'IBM Plex Sans',
     color: Color(0xFFFF0032),
-    
+  );
+
   static const TextStyle style_white = TextStyle(
     fontSize: 17,
     fontFamily: 'IBM Plex Sans',
