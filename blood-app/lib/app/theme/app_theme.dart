@@ -5,6 +5,7 @@ class AppTheme {
 
   /// Black #000000
   static const black = Color(0xFF000000);
+  static const strongRed = Color.fromARGB(255, 255, 0, 50);
 
   /// Red #FF0032
   static const red = Color(0xFFFF0032);
@@ -112,9 +113,30 @@ class AppTheme {
   );
 
   static const TextStyle semibold_small_white = TextStyle(
-    fontSize: 15,
+    fontSize: 13, //15
     fontFamily: 'IBM Plex Sans',
     color: Colors.white,
     fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle style_white = TextStyle(
+    fontSize: 17,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
+  static const TextStyle style_black = TextStyle(
+    fontSize: 17,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.black,
+  );
+
+  static const TextStyle redTitle = TextStyle(
+    fontSize: 18,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w800,
+    color: strongRed,
   );
 }

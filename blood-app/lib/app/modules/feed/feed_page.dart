@@ -54,7 +54,7 @@ class FeedPage extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   InfoFeed(
-                    width: width * 0.57,
+                    width: width * 0.60,
                     height: height * 0.04,
                   ),
                   SizedBox(

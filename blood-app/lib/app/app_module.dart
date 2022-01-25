@@ -1,3 +1,4 @@
+import 'package:blood_app/app/modules/mapa/mapa_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'modules/feed/feed_module.dart';
@@ -15,5 +16,6 @@ class AppModule extends Module {
     ModuleRoute('/cadastro', module: CadastroModule()),
     ModuleRoute('/feed', module: FeedModule()),
     ModuleRoute('/conteudo', module: ConteudoModule()),
+    ModuleRoute('/mapa', module: MapaModule())
   ];
 }

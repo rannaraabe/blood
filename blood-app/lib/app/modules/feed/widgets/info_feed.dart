@@ -18,7 +18,7 @@ class InfoFeed extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        color: Color(0xFFFFFFFF).withOpacity(0.8),
+        color: Color(0xFFFFFFFF).withOpacity(0.5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
