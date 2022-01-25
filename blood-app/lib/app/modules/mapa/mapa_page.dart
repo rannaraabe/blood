@@ -17,11 +17,13 @@ class donationCenter {
       required this.name,
       required this.adress,
       required this.phone,
+      required this.schedules,
       required this.marker})
       : super();
   final String name;
   final String phone;
   final String adress;
+  final String schedules;
   final Marker marker;
 }
 
@@ -61,45 +63,52 @@ class _MapAppState extends State<MapApp> {
     donationCenter(
         name: "Hemonorte Dalton Cunha",
         phone: "(84) 3232-6701",
-        adress: "Avenida Almirante Alexandrino de Alencar",
+        adress:
+            "Av. Alm. Alexandrino de Alencar, 1800 - Tirol, Natal - RN, 59015-350",
+        schedules: "Segunda à sábado ⋅ 07:00–18:00",
         marker: Marker(
           width: 100,
           height: 100,
           point: LatLng(-5.8104912, -35.1965767),
           builder: (ctx) => Container(
             child: Icon(
-              Icons.volunteer_activism,
+              Icons.location_pin,
               color: Colors.red,
+              size: 50,
             ),
           ),
         )),
     donationCenter(
-        name: "Associação dos deficientes físicos do RN",
+        name: "Associação de deficientes físicos",
         phone: "(84) 3614-2060",
-        adress: "Rua Cariacica",
+        adress: "R. Cariacica, 2000 - Potengi, Natal - RN, 59124-130",
+        schedules: "Segunda à sexta ⋅ 09:00–12:00, 13:30–15:30",
         marker: Marker(
           width: 100,
           height: 100,
           point: LatLng(-5.749271, -35.246263),
           builder: (ctx) => Container(
             child: Icon(
-              Icons.volunteer_activism,
+              Icons.location_pin,
               color: Colors.red,
+              size: 50,
             ),
           ),
         )),
     donationCenter(
         name: "Hemovida",
         phone: "(84) 3202-4289",
-        adress: "Avenida Nilo Peçanha",
+        adress: "Av. Nilo Peçanha, 199 - Petrópolis, Natal - RN, 59012-300",
+        schedules: "Segunda à sexta ⋅ 08:00–16:00",
         marker: Marker(
           width: 100,
           height: 100,
           point: LatLng(-5.781274, -35.196829),
           builder: (ctx) => Container(
             child: Icon(
-              Icons.volunteer_activism,
+              Icons.location_pin,
               color: Colors.red,
+              size: 50,
             ),
           ),
         )),
@@ -174,17 +183,24 @@ class _MapAppState extends State<MapApp> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Card(
+                elevation: 2,
+                shadowColor: Colors.black12,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(23.0),
+                ),
                 child: TextField(
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0)),
+                        borderRadius: BorderRadius.circular(25.0)),
                     contentPadding: EdgeInsets.all(16.0),
-                    hintText: "Busque por uma unidade de doação",
-                    prefixIcon: Icon(Icons.location_on_outlined),
+                    hintText: "Pesquisar...",
+                    prefixIcon: Icon(Icons.search),
                   ),
                 ),
               ),
               Card(
+                elevation: renderModal ? 1 : 0,
+                shadowColor: Colors.black12,
                 color: Colors.transparent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(23.0),
@@ -219,15 +235,32 @@ class _MapAppState extends State<MapApp> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              donationUnits[
-                                                      closerDonationUnitIndex]
-                                                  .name,
-                                              style: AppTheme.redTitle,
-                                              textAlign: TextAlign.center,
+                                            Padding(
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
+                                              child: Row(
+                                                children: [
+                                                  Text(
+                                                    donationUnits[
+                                                            closerDonationUnitIndex]
+                                                        .name,
+                                                    style:
+                                                        (AppTheme.regular_card),
+                                                    textAlign: TextAlign.start,
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(10, 0, 0, 0),
+                                                    child: Icon(
+                                                      Icons.phone,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                             Divider(
-                                              color: Colors.black,
+                                              color: Colors.black45,
                                             ),
                                             Text(
                                               "Endereço: " +
@@ -235,23 +268,23 @@ class _MapAppState extends State<MapApp> {
                                                           closerDonationUnitIndex]
                                                       .adress +
                                                   "\n" +
+                                                  "Horários: " +
+                                                  donationUnits[
+                                                          closerDonationUnitIndex]
+                                                      .schedules +
+                                                  "\n" +
                                                   "Telefone: " +
                                                   donationUnits[
                                                           closerDonationUnitIndex]
-                                                      .phone +
-                                                  "\n" +
-                                                  "Distancia: " +
-                                                  distanceToCLoserUnit
-                                                      .toStringAsFixed(2) +
-                                                  "km",
+                                                      .phone,
                                               style: AppTheme.style4,
                                               textAlign: TextAlign.start,
                                             )
                                           ],
                                         )
                                       : Text(
-                                          "Encontre a unidade mais próxima",
-                                          style: AppTheme.style1,
+                                          "Encontrar a unidade mais próxima",
+                                          style: AppTheme.small_white,
                                           textAlign: TextAlign.center,
                                         ))
                             ],
