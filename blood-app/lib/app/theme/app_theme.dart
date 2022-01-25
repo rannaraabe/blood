@@ -155,8 +155,8 @@ class AppTheme {
   static const TextStyle style_black = TextStyle(
     fontSize: 17,
     fontFamily: 'IBM Plex Sans',
-    fontWeight: FontWeight.w500,
-    color: Colors.black,
+    // fontWeight: FontWeight.w500,
+    color: Colors.black38,
   );
 
   static const TextStyle redTitle = TextStyle(
@@ -164,5 +164,16 @@ class AppTheme {
     fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeight.w800,
     color: strongRed,
+  );
+
+  static const TextStyle regular_card = TextStyle(
+    fontSize: 18,
+  );
+
+  static const TextStyle small_white = TextStyle(
+    fontSize: 14,
+    fontFamily: 'IBM Plex Sans',
+    color: Colors.white,
+    fontWeight: FontWeight.w400,
   );
 }
