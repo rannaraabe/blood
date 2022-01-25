@@ -67,4 +67,30 @@ class AppTheme {
     color: Colors.white,
     fontWeight: FontWeight.w600,
   );
+
+  static const TextStyle semibold_small_red = TextStyle(
+    fontSize: 17,
+    fontFamily: 'IBM Plex Sans',
+    color: Color(0xFFF28888),
+    fontWeight: FontWeight.w600,
+  );
+
+  static const TextStyle semibold_small_gray = TextStyle(
+    fontSize: 13,
+    fontFamily: 'IBM Plex Sans',
+    color: Colors.black26,
+  );
+
+  static const TextStyle semibold_small = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'IBM Plex Sans',
+  );
+
+  static const TextStyle semibold_small_delete = TextStyle(
+    fontSize: 17,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'IBM Plex Sans',
+    color: Color(0xFFFF0032),
+  );
 }
