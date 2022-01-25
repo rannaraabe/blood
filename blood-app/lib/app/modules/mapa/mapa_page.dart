@@ -251,7 +251,7 @@ class _MapAppState extends State<MapApp> {
                                         )
                                       : Text(
                                           "Encontre a unidade mais próxima",
-                                          style: AppTheme.style_white,
+                                          style: AppTheme.style_black,
                                           textAlign: TextAlign.center,
                                         ))
                             ],
