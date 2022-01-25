@@ -21,4 +21,28 @@ class EasyRequest {
           <String, String>{'username': username, 'password': password}),
     );
   }
+
+  static Future<http.Response> cadastrarUsuatio(
+      String name,
+      String username,
+      String password,
+      String email,
+      String dataNascimento,
+      String tipoSanguineo) async {
+    return await http.post(
+      Uri.parse(BackendRoutes.USER),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token.jwt
+      },
+      body: jsonEncode(<String, String>{
+        "nome": name,
+        "username": username,
+        "password": password,
+        "tipoSanguineo": tipoSanguineo,
+        "email": email,
+        "dataNascimento": dataNascimento
+      }),
+    );
+  }
 }
