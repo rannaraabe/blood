@@ -273,18 +273,18 @@ class _MapAppState extends State<MapApp> {
                                                           closerDonationUnitIndex]
                                                       .schedules +
                                                   "\n" +
-                                                  "Telefone: " +
-                                                  donationUnits[
-                                                          closerDonationUnitIndex]
-                                                      .phone,
-                                              style: AppTheme.style4,
+                                                  "Distancia: " +
+                                                  distanceToCLoserUnit
+                                                      .toStringAsFixed(2) +
+                                                  "km",
+                                              style: AppTheme.style_black,
                                               textAlign: TextAlign.start,
                                             )
                                           ],
                                         )
                                       : Text(
-                                          "Encontrar a unidade mais próxima",
-                                          style: AppTheme.small_white,
+                                          "Encontre a unidade mais próxima",
+                                          style: AppTheme.style_white,
                                           textAlign: TextAlign.center,
                                         ))
                             ],

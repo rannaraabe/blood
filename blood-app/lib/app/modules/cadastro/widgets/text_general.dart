@@ -7,13 +7,13 @@ class TextGeneral extends StatelessWidget {
     Key? key,
     required this.height,
     required this.width,
-    required this.hintText,
+    this.hintText,
     this.icon,
   }) : super(key: key);
 
   final double height;
   final double width;
-  final String hintText;
+  final String? hintText;
   final Icon? icon;
 
   @override
