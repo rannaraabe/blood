@@ -1,9 +1,47 @@
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
+import 'package:blood_app/app/utils/easy_request.dart';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../theme/app_theme.dart';
+
+void showLogoutDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      EasyRequest.token.jwt = "BLOOD ";
+      Future.delayed(Duration(milliseconds: 2000), () {
+        Modular.to.navigate(Modular.initialRoute);
+      });
+
+      return Dialog(
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(30.0))),
+        child: Container(
+            height: MediaQuery.of(context).size.height * 0.6,
+            width: MediaQuery.of(context).size.width * 0.8,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset('assets/images/undraw_in_real_life_v8fk 1.png'),
+                  Text(
+                    "Te esperamos de volta! Aguarde enquanto finalizamos.",
+                    textAlign: TextAlign.center,
+                    style: AppTheme.style_black,
+                  ),
+                  CircularProgressIndicator(color: AppTheme.red)
+                ],
+              ),
+            )),
+      );
+    },
+  );
+}
 
 class ContaPage extends StatelessWidget {
   @override
@@ -178,16 +216,20 @@ class ContaPage extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                      child: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.exit_to_app,
-                            color: Colors.black,
-                          ),
-                          Text(' Sair', style: (AppTheme.semibold_small)),
-                        ],
-                      ),
+                      child: GestureDetector(
+                          onTap: () {
+                            showLogoutDialog(context);
+                          },
+                          child: Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.exit_to_app,
+                                color: Colors.black,
+                              ),
+                              Text(' Sair', style: (AppTheme.semibold_small)),
+                            ],
+                          )),
                     ),
                   ],
                 ),
