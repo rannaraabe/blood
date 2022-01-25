@@ -1,7 +1,7 @@
 class BackendRoutes {
   BackendRoutes._();
 
-  static const String BACKEND_DOMAIN = "https://blood-backend1.herokuapp.com";
+  static const String BACKEND_DOMAIN = " https://blood-backend2.herokuapp.com";
 
   static const String LOGIN = BACKEND_DOMAIN + "/autenticacao";
 
