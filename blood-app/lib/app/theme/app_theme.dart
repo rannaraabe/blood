@@ -38,6 +38,27 @@ class AppTheme {
     color: Colors.white,
   );
 
+  static const TextStyle regular_small2_white = TextStyle(
+    fontSize: 15.5,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+
+  static const TextStyle regular_small3_white = TextStyle(
+    fontSize: 15.7,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
+
+  static const TextStyle regular_medium_white = TextStyle(
+    fontSize: 24,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
+
   static const TextStyle regular_large_white = TextStyle(
     fontSize: 26,
     fontFamily: 'IBM Plex Sans',
@@ -52,12 +73,48 @@ class AppTheme {
     color: Colors.white,
   );
 
+  static const TextStyle bold_large_white2 = TextStyle(
+    fontSize: 20,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+
   static const TextStyle bold_large = TextStyle(
     fontSize: 32,
     fontWeight: FontWeight.bold,
   );
 
+  static const TextStyle bold_regular = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const TextStyle bold_small = TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+  );
+
+  static const TextStyle regular_small_black = TextStyle(
+    fontSize: 14.2,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle regular_small_black2 = TextStyle(
+    fontSize: 12,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w400,
+  );
+
   static const TextStyle regular_medium = TextStyle(
     fontSize: 22,
+  );
+
+  static const TextStyle semibold_small_white = TextStyle(
+    fontSize: 15,
+    fontFamily: 'IBM Plex Sans',
+    color: Colors.white,
+    fontWeight: FontWeight.w600,
   );
 }
