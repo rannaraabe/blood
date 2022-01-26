@@ -188,4 +188,11 @@ class AppTheme {
     fontFamily: 'IBM Plex Sans',
     fontWeight: FontWeight.bold,
   );
+
+  static const TextStyle regular_small4_white = TextStyle(
+    fontSize: 15,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w400,
+    color: Colors.white,
+  );
 }
