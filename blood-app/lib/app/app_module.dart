@@ -6,6 +6,7 @@ import 'modules/inicio/inicio_module.dart';
 import 'modules/cadastro/cadastro_module.dart';
 import 'modules/conta/conta_module.dart';
 import 'modules/conteudo/conteudo_module.dart';
+import 'modules/login/login_module.dart';
 import 'modules/main/main_module.dart';
 
 class AppModule extends Module {
@@ -15,6 +16,8 @@ class AppModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ModuleRoute(Modular.initialRoute, module: InicioModule()),
+    ModuleRoute('/login', module: LoginModule()),
+
     /// Defines the navigation between pages:
     ModuleRoute('/main', module: MainModule()),
     ModuleRoute('/cadastro', module: CadastroModule()),

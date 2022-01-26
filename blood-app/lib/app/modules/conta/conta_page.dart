@@ -173,6 +173,7 @@ class ContaPage extends StatelessWidget {
                             height: height * 0.06,
                             width: width * 0.8,
                             hintText: user.nome,
+                            obscureText: false,
                           ),
                         ),
                         Padding(
@@ -181,6 +182,7 @@ class ContaPage extends StatelessWidget {
                             height: height * 0.06,
                             width: width * 0.8,
                             hintText: 'A+',
+                            obscureText: false,
                           ),
                         ),
                         Padding(
@@ -189,6 +191,7 @@ class ContaPage extends StatelessWidget {
                             height: height * 0.06,
                             width: width * 0.8,
                             hintText: user.email,
+                            obscureText: false,
                           ),
                         ),
                         Padding(
@@ -209,6 +212,7 @@ class ContaPage extends StatelessWidget {
                                     .toString(),
                             icon: Icon(Icons.calendar_today,
                                 color: Colors.black26),
+                            obscureText: false,
                           ),
                         ),
                         Padding(
@@ -217,6 +221,7 @@ class ContaPage extends StatelessWidget {
                             height: height * 0.06,
                             width: width * 0.8,
                             hintText: user.username,
+                            obscureText: false,
                           ),
                         ),
                         Padding(
@@ -225,6 +230,7 @@ class ContaPage extends StatelessWidget {
                             height: height * 0.06,
                             width: width * 0.8,
                             hintText: '********',
+                            obscureText: true,
                           ),
                         ),
                         Padding(

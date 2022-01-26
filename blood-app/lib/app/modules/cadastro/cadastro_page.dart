@@ -40,6 +40,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Nome completo',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -48,6 +49,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Tipo de sangue',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -56,6 +58,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Usuário',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -63,7 +66,8 @@ class CadastroPage extends StatelessWidget {
                     child: TextGeneral(
                       height: height * 0.06,
                       width: width * 0.8,
-                      hintText: 'Email',
+                      hintText: 'E-mail',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -72,6 +76,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Senha',
+                      obscureText: true,
                     ),
                   ),
                   Padding(
@@ -82,6 +87,7 @@ class CadastroPage extends StatelessWidget {
                       width: width * 0.8,
                       hintText: 'Data de nascimento',
                       icon: Icon(Icons.calendar_today, color: Colors.black26),
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -90,9 +96,6 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       text: 'Finalizar',
-
-                      provider: false,
-
                     ),
                   ),
                   Image.asset('assets/images/blood_drop.png'),
