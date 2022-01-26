@@ -1,5 +1,6 @@
 import 'package:blood_app/app/firebase/google_sign_in_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:provider/provider.dart';
 
 import '../../../theme/app_theme.dart';
@@ -24,9 +25,7 @@ class InicioButton extends StatelessWidget {
       onTap: () {
         // Provider(provedor de código): abstrai o padrão singleton => instância única para o app inteiro
         if (provider) {
-          final provider =
-              Provider.of<GoogleSignInProvider>(context, listen: false);
-          provider.googleLogIn();
+          Modular.to.navigate('/cadastro');
         }
       },
       child: Container(

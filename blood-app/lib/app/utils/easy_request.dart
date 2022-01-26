@@ -11,7 +11,6 @@ class EasyRequest {
   static Token token = Token(jwt: "BLOOD ");
 
   static Future<http.Response> login(String username, String password) async {
-    print("entrei na função");
     return await http.post(
       Uri.parse(BackendRoutes.LOGIN),
       headers: <String, String>{
@@ -29,20 +28,30 @@ class EasyRequest {
       String email,
       String dataNascimento,
       String tipoSanguineo) async {
-    return await http.post(
-      Uri.parse(BackendRoutes.USER),
+    return await http.post(Uri.parse(BackendRoutes.USER),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': token.jwt
+        },
+        body: jsonEncode(<String, String>{
+          "nome": name,
+          "username": username,
+          "password": password,
+          "tipoSanguineo": tipoSanguineo,
+          "email": email,
+          "dataNascimento": dataNascimento
+        }));
+  }
+
+  static Future<http.Response> fetchUser(String username) async {
+    return await http.get(
+      Uri.parse(
+          "https://blood-backend2.herokuapp.com/usuario/byusername?username=leonandro"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': token.jwt
+        'Authorization':
+            'BLOOD eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW9uYW5kcm8iLCJleHAiOjE2NDMxODcwNDUsImlhdCI6MTY0MzE1MTA0NX0.2i6t1w1gEh-8Ks_6X1HNMW6XYik1Qr6ukm3Q7cTV6u8'
       },
-      body: jsonEncode(<String, String>{
-        "nome": name,
-        "username": username,
-        "password": password,
-        "tipoSanguineo": tipoSanguineo,
-        "email": email,
-        "dataNascimento": dataNascimento
-      }),
     );
   }
 }

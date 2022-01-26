@@ -1,4 +1,3 @@
-import 'package:blood_app/app/design_system/bottom_bar.dart';
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +12,10 @@ class FeedPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      // bottomNavigationBar: BottonNavBar(),
+      resizeToAvoidBottomInset: true,
       floatingActionButton: Padding(
-        padding: EdgeInsets.only(bottom: height * 0.09, right: width * 0.01),
+        padding: EdgeInsets.only(bottom: height * 0.005, right: width * 0.01),
         child: Container(
           height: height * 0.08,
           width: height * 0.08,
@@ -69,13 +70,6 @@ class FeedPage extends StatelessWidget {
                       urgencyLevel: 'Urgente',
                     ),
                     // paddingTop: height * 0.0001,
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, height * 0.02),
-                    child: BottomBar(
-                      feedColor: Color(0XFF323232),
-                    ),
                   ),
                 ],
               ),
