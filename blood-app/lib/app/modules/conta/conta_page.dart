@@ -7,17 +7,24 @@ import 'package:blood_app/app/utils/easy_request.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/app_theme.dart';
 import 'package:http/http.dart' as http;
+
+void handleLogout() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  EasyRequest.token.jwt = EasyRequest.expired_token;
+  prefs.setString('token', EasyRequest.expired_token);
+  Modular.to.navigate('/login');
+}
 
 void showLogoutDialog(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      EasyRequest.token.jwt = "BLOOD ";
-      Future.delayed(Duration(milliseconds: 2000), () {
-        Modular.to.navigate(Modular.initialRoute);
+      Future.delayed(Duration(milliseconds: 1500), () {
+        handleLogout();
       });
 
       return Dialog(
@@ -54,7 +61,7 @@ class ContaPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: FutureBuilder<http.Response>(
-      future: EasyRequest.fetchUser("leonandro"),
+      future: EasyRequest.fetchUser(EasyRequest.username),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -79,8 +86,9 @@ class ContaPage extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(4), // Border radius
                             child: ClipOval(
-                                child: Image.asset(
-                                    'assets/images/Ze_gotinha_maromba.jpeg')),
+                                child: Image.asset('assets/images/' +
+                                    EasyRequest.username +
+                                    '.jpg')),
                           ),
                         ),
                         Padding(

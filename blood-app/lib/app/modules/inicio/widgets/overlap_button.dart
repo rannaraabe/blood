@@ -8,31 +8,18 @@ import 'package:provider/provider.dart';
 import '../../../theme/app_theme.dart';
 
 class OverlapButton extends StatelessWidget {
-  const OverlapButton({
-    Key? key,
-    required this.height,
-    required this.width,
-    required this.text,
-    required this.provider,
-  }) : super(key: key);
+  const OverlapButton(
+      {Key? key, required this.height, required this.width, required this.text})
+      : super(key: key);
 
   final double height;
   final double width;
   final String text;
-  final bool provider;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Modular.to.pushNamed("/login");
-        // Provider(provedor de código): abstrai o padrão singleton => instância única para o app inteiro
-        if (provider) {
-          final provider =
-              Provider.of<GoogleSignInProvider>(context, listen: false);
-          provider.googleLogIn();
-        }
-      },
+      onTap: () {},
       child: Container(
         height: height,
         width: width,
@@ -45,7 +32,9 @@ class OverlapButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                Modular.to.pushNamed("/login");
+              },
               color: Colors.transparent,
               elevation: 0,
               child: Text(

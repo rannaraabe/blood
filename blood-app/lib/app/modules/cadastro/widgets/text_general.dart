@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 import '../../../theme/app_theme.dart';
 
 class TextGeneral extends StatelessWidget {
-  const TextGeneral({
-    Key? key,
-    required this.height,
-    required this.width,
-    this.hintText,
-    this.icon,
-    required this.obscureText,
-  }) : super(key: key);
+  const TextGeneral(
+      {Key? key,
+      required this.height,
+      required this.width,
+      this.hintText,
+      this.icon,
+      required this.obscureText,
+      this.textEditingController})
+      : super(key: key);
 
   final double height;
   final double width;
   final String? hintText;
   final Icon? icon;
   final bool obscureText;
+  final TextEditingController? textEditingController;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +37,7 @@ class TextGeneral extends StatelessWidget {
         ],
       ),
       child: TextField(
+        controller: textEditingController,
         obscureText: obscureText,
         style: TextStyle(color: Colors.black26),
         decoration: InputDecoration(

@@ -39,7 +39,6 @@ class InicioPage extends StatelessWidget {
                           height: height * 0.06,
                           width: width * 0.39,
                           text: 'Entre',
-                          provider: true,
                         ),
                       ),
                     ],

@@ -9,6 +9,9 @@ class EasyRequest {
   EasyRequest._();
 
   static Token token = Token(jwt: "BLOOD ");
+  static String username = "";
+  static String expired_token =
+      'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY0Mjk5Njk0OSwiaWF0IjoxNjQyOTEwNTQ5fQ.s1DEKRaQad8JWpnos4GlmPzag2Phb4-_v1kTszrVtc8';
 
   static Future<http.Response> login(String username, String password) async {
     return await http.post(
@@ -31,7 +34,6 @@ class EasyRequest {
     return await http.post(Uri.parse(BackendRoutes.USER),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
-          'Authorization': token.jwt
         },
         body: jsonEncode(<String, String>{
           "nome": name,
@@ -46,11 +48,13 @@ class EasyRequest {
   static Future<http.Response> fetchUser(String username) async {
     return await http.get(
       Uri.parse(
-          "https://blood-backend2.herokuapp.com/usuario/byusername?username=leonandro"),
+          "https://blood-backend2.herokuapp.com/usuario/byusername?username=" +
+              username),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization':
-            'BLOOD eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW9uYW5kcm8iLCJleHAiOjE2NDMxODcwNDUsImlhdCI6MTY0MzE1MTA0NX0.2i6t1w1gEh-8Ks_6X1HNMW6XYik1Qr6ukm3Q7cTV6u8'
+        //'Authorization':
+        //    'BLOOD eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJsZW9uYW5kcm8iLCJleHAiOjE2NDMxODcwNDUsImlhdCI6MTY0MzE1MTA0NX0.2i6t1w1gEh-8Ks_6X1HNMW6XYik1Qr6ukm3Q7cTV6u8'
+        'Authorization': token.jwt
       },
     );
   }
