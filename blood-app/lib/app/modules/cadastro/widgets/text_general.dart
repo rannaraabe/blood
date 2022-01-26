@@ -9,12 +9,14 @@ class TextGeneral extends StatelessWidget {
     required this.width,
     this.hintText,
     this.icon,
+    required this.obscureText,
   }) : super(key: key);
 
   final double height;
   final double width;
   final String? hintText;
   final Icon? icon;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class TextGeneral extends StatelessWidget {
         ],
       ),
       child: TextField(
+        obscureText: obscureText,
         style: TextStyle(color: Colors.black26),
         decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(25, 25, 25, 0),

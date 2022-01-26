@@ -176,4 +176,16 @@ class AppTheme {
     color: Colors.white,
     fontWeight: FontWeight.w400,
   );
+
+  static const TextStyle small_black = TextStyle(
+    fontSize: 14,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+  );
+
+  static const TextStyle bold_small_black = TextStyle(
+    fontSize: 14,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.bold,
+  );
 }

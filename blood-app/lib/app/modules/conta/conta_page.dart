@@ -119,6 +119,7 @@ class ContaPage extends StatelessWidget {
                         height: height * 0.06,
                         width: width * 0.8,
                         hintText: 'Júlia Nascimento Duarte',
+                        obscureText: false,
                       ),
                     ),
                     Padding(
@@ -127,6 +128,7 @@ class ContaPage extends StatelessWidget {
                         height: height * 0.06,
                         width: width * 0.8,
                         hintText: 'B+',
+                        obscureText: false,
                       ),
                     ),
                     Padding(
@@ -135,6 +137,7 @@ class ContaPage extends StatelessWidget {
                         height: height * 0.06,
                         width: width * 0.8,
                         hintText: 'julianasd@gmail.com',
+                        obscureText: false,
                       ),
                     ),
                     Padding(
@@ -144,6 +147,7 @@ class ContaPage extends StatelessWidget {
                         width: width * 0.8,
                         hintText: '14/05/1985',
                         icon: Icon(Icons.calendar_today, color: Colors.black26),
+                        obscureText: false,
                       ),
                     ),
                     Padding(
@@ -152,6 +156,7 @@ class ContaPage extends StatelessWidget {
                         height: height * 0.06,
                         width: width * 0.8,
                         hintText: '@julianasd',
+                        obscureText: false,
                       ),
                     ),
                     Padding(
@@ -160,6 +165,7 @@ class ContaPage extends StatelessWidget {
                         height: height * 0.06,
                         width: width * 0.8,
                         hintText: '********',
+                        obscureText: true,
                       ),
                     ),
                     Padding(

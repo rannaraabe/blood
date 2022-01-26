@@ -155,7 +155,6 @@ class CardChildFeed extends StatelessWidget {
           height: height * 0.06,
           width: width * 0.6,
           text: 'Doar',
-          provider: false,
         ),
       ],
     );

@@ -35,6 +35,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Nome completo',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -43,6 +44,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Tipo de sangue',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -51,6 +53,7 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       hintText: 'Gênero',
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -61,6 +64,7 @@ class CadastroPage extends StatelessWidget {
                       width: width * 0.8,
                       hintText: 'Data de nascimento',
                       icon: Icon(Icons.calendar_today, color: Colors.black26),
+                      obscureText: false,
                     ),
                   ),
                   Padding(
@@ -87,7 +91,6 @@ class CadastroPage extends StatelessWidget {
                       height: height * 0.06,
                       width: width * 0.8,
                       text: 'Finalizar',
-                      provider: true,
                     ),
                   ),
                   Image.asset('assets/images/blood_drop.png'),
