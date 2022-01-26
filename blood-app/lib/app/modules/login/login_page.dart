@@ -98,9 +98,14 @@ class LoginPage extends StatelessWidget {
                           // TODO: adicionar ação no botão de voltar
                           children: [
                             Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(15, 0, 0, 15),
-                                child: Icon(Icons.arrow_back_ios)),
+                              padding: const EdgeInsets.fromLTRB(15, 5, 0, 15),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Modular.to.pushNamed(Modular.initialRoute);
+                                },
+                                child: Icon(Icons.arrow_back_ios),
+                              ),
+                            ),
                           ],
                         ),
                         Image.asset('assets/images/inicio_image.png'),

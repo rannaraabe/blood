@@ -24,23 +24,19 @@ class TextColumn extends StatelessWidget {
           height: 10,
         ),
         Text(
-          'Estamos felizes em ter',
+          'Você está a um passo de se',
           style: AppTheme.regular_medium,
         ),
         Text(
-          'você conosco! Você está a',
+          'tornar um doador! Precisamos',
           style: AppTheme.regular_medium,
         ),
         Text(
-          'um passo de se tornar um',
+          'apenas de algumas das suas',
           style: AppTheme.regular_medium,
         ),
         Text(
-          'doador! Precisamos apenas',
-          style: AppTheme.regular_medium,
-        ),
-        Text(
-          'de algumas informações.',
+          'informações.',
           style: AppTheme.regular_medium,
         ),
       ],

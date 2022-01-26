@@ -168,7 +168,7 @@ class CadastroPage extends StatelessWidget {
                       Row(
                         children: [
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                            padding: const EdgeInsets.fromLTRB(15, 5, 0, 15),
                             child: GestureDetector(
                               onTap: () {
                                 Modular.to.pushNamed(Modular.initialRoute);
@@ -180,7 +180,7 @@ class CadastroPage extends StatelessWidget {
                       ),
                       TextColumn(),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 25, 0, 15),
+                        padding: const EdgeInsets.fromLTRB(0, 20, 0, 8),
                         child: TextGeneral(
                           textEditingController: nameController,
                           height: height * 0.06,
@@ -190,7 +190,7 @@ class CadastroPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                         child: TextGeneral(
                           textEditingController: bloodTypeController,
                           height: height * 0.06,
@@ -200,38 +200,8 @@ class CadastroPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextGeneral(
-                          textEditingController: usernameController,
-                          height: height * 0.06,
-                          width: width * 0.8,
-                          hintText: 'Usuário',
-                          obscureText: false,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextGeneral(
-                          textEditingController: emailController,
-                          height: height * 0.06,
-                          width: width * 0.8,
-                          hintText: 'E-mail',
-                          obscureText: false,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                        child: TextGeneral(
-                          textEditingController: passwordController,
-                          height: height * 0.06,
-                          width: width * 0.8,
-                          hintText: 'Senha',
-                          obscureText: true,
-                        ),
-                      ),
-                      Padding(
                         // TODO: abrir DatePicker ao clicar no icon do calendário
-                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
                         child: TextGeneral(
                           textEditingController: dateController,
                           height: height * 0.06,
@@ -243,7 +213,55 @@ class CadastroPage extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                        child: TextGeneral(
+                          textEditingController: usernameController,
+                          height: height * 0.06,
+                          width: width * 0.8,
+                          hintText: 'Usuário',
+                          obscureText: false,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 8),
+                        child: TextGeneral(
+                          textEditingController: emailController,
+                          height: height * 0.06,
+                          width: width * 0.8,
+                          hintText: 'E-mail',
+                          obscureText: false,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: TextGeneral(
+                          textEditingController: passwordController,
+                          height: height * 0.06,
+                          width: width * 0.8,
+                          hintText: 'Senha',
+                          obscureText: true,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                        child: Wrap(
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.toggle_on,
+                              color: Colors.red,
+                              size: 60,
+                            ),
+                            Text(
+                              ' Já sou doador de sangue                   ',
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.black38),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                           child: GestureDetector(
                             onTap: () {
                               showLoadingDialog(
@@ -275,7 +293,6 @@ class CadastroPage extends StatelessWidget {
                               ),
                             ),
                           )),
-                      Image.asset('assets/images/blood_drop.png'),
                     ],
                   )))),
     );
