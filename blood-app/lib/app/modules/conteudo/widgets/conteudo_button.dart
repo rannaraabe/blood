@@ -1,12 +1,9 @@
-import 'package:blood_app/app/firebase/google_sign_in_provider.dart';
+import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
+import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:provider/provider.dart';
 
-import '../../../theme/app_theme.dart';
-
-class InicioButton extends StatelessWidget {
-  const InicioButton({
+class ConteudoButton extends StatelessWidget {
+  const ConteudoButton({
     Key? key,
     required this.height,
     required this.width,
@@ -22,25 +19,20 @@ class InicioButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Provider(provedor de código): abstrai o padrão singleton => instância única para o app inteiro
-        if (provider) {
-          Modular.to.navigate('/cadastro');
-        }
-      },
+      onTap: () {},
       child: Container(
         height: height,
         width: width,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(18.0),
-          color: AppTheme.black,
+          color: Colors.white,
         ),
         child: Row(
           children: [
             Expanded(
               child: Text(
                 text,
-                style: AppTheme.regular_small_white,
+                style: AppTheme.regular_small_black2,
                 textAlign: TextAlign.center,
               ),
             )

@@ -1,3 +1,4 @@
+import 'package:blood_app/app/modules/feed/widgets/label_urgency.dart';
 import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
@@ -35,11 +36,10 @@ class CardChildFeed extends StatelessWidget {
               child: Padding(
                 padding:
                     EdgeInsets.only(top: height * 0.025, right: width * 0.06),
-                child: InicioButton(
+                child: LabelUrgency(
                   height: height * 0.035,
                   width: width * 0.27,
                   text: urgencyLevel,
-                  provider: false,
                 ),
               ),
             ),
