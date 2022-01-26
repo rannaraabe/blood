@@ -2,6 +2,7 @@ import 'package:blood_app/app/modules/cadastro/widgets/text_column.dart';
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
 import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../theme/app_theme.dart';
 
@@ -21,11 +22,16 @@ class CadastroPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
-                    // TODO: adicionar ação no botão de voltar
                     children: [
                       Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
-                          child: Icon(Icons.arrow_back_ios)),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                        child: GestureDetector(
+                          onTap: () {
+                            Modular.to.pushNamed(Modular.initialRoute);
+                          },
+                          child: Icon(Icons.arrow_back_ios),
+                        ),
+                      ),
                     ],
                   ),
                   TextColumn(),
