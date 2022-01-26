@@ -2,6 +2,7 @@ import 'package:blood_app/app/modules/cadastro/widgets/text_column.dart';
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
 import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../theme/app_theme.dart';
 
@@ -12,8 +13,7 @@ class CadastroPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-          color: Colors.white,
+      body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.all(32),
               child: Column(
@@ -21,11 +21,16 @@ class CadastroPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Row(
-                    // TODO: adicionar ação no botão de voltar
                     children: [
                       Padding(
-                          padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
-                          child: Icon(Icons.arrow_back_ios)),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 15),
+                        child: GestureDetector(
+                          onTap: () {
+                            Modular.to.pushNamed(Modular.initialRoute);
+                          },
+                          child: Icon(Icons.arrow_back_ios),
+                        ),
+                      ),
                     ],
                   ),
                   TextColumn(),
@@ -52,8 +57,26 @@ class CadastroPage extends StatelessWidget {
                     child: TextGeneral(
                       height: height * 0.06,
                       width: width * 0.8,
-                      hintText: 'Gênero',
+                      hintText: 'Usuário',
                       obscureText: false,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextGeneral(
+                      height: height * 0.06,
+                      width: width * 0.8,
+                      hintText: 'E-mail',
+                      obscureText: false,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextGeneral(
+                      height: height * 0.06,
+                      width: width * 0.8,
+                      hintText: 'Senha',
+                      obscureText: true,
                     ),
                   ),
                   Padding(
@@ -65,24 +88,6 @@ class CadastroPage extends StatelessWidget {
                       hintText: 'Data de nascimento',
                       icon: Icon(Icons.calendar_today, color: Colors.black26),
                       obscureText: false,
-                    ),
-                  ),
-                  Padding(
-                    // TODO: adicionar ação ao clicar no icon de Toggle
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.toggle_off,
-                          color: Colors.black26,
-                          size: 60,
-                        ),
-                        Text(
-                          ' Já sou doador de sangue                   ',
-                          style: TextStyle(fontSize: 16, color: Colors.black26),
-                        ),
-                      ],
                     ),
                   ),
                   Padding(
