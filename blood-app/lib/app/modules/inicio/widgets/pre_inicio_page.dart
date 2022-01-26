@@ -1,4 +1,5 @@
 import 'package:blood_app/app/modules/inicio/inicio_page.dart';
+import 'package:blood_app/app/modules/main/main_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,9 @@ class PreInicioPage extends StatelessWidget {
             child: CircularProgressIndicator(),
           );
         } 
-        // else if (snapshot.hasData) {
-          // return FeedPage();
-        // }
+        else if (snapshot.hasData) {
+          return MainPage();
+        }
          else if (snapshot.hasError) {
           return Center(
             child: Text('Algo errado aconteceu!'),
