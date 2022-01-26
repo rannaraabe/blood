@@ -13,8 +13,7 @@ class CadastroPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-          color: Colors.white,
+      body: SingleChildScrollView(
           child: Padding(
               padding: EdgeInsets.all(32),
               child: Column(
@@ -56,7 +55,23 @@ class CadastroPage extends StatelessWidget {
                     child: TextGeneral(
                       height: height * 0.06,
                       width: width * 0.8,
-                      hintText: 'Gênero',
+                      hintText: 'Usuário',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextGeneral(
+                      height: height * 0.06,
+                      width: width * 0.8,
+                      hintText: 'Email',
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
+                    child: TextGeneral(
+                      height: height * 0.06,
+                      width: width * 0.8,
+                      hintText: 'Senha',
                     ),
                   ),
                   Padding(
@@ -70,30 +85,14 @@ class CadastroPage extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    // TODO: adicionar ação ao clicar no icon de Toggle
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                    child: Wrap(
-                      crossAxisAlignment: WrapCrossAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.toggle_off,
-                          color: Colors.black26,
-                          size: 60,
-                        ),
-                        Text(
-                          ' Já sou doador de sangue                   ',
-                          style: TextStyle(fontSize: 16, color: Colors.black26),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 0, 25),
                     child: InicioButton(
                       height: height * 0.06,
                       width: width * 0.8,
                       text: 'Finalizar',
-                      provider: true,
+
+                      provider: false,
+
                     ),
                   ),
                   Image.asset('assets/images/blood_drop.png'),
