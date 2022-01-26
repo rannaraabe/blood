@@ -19,6 +19,13 @@ void handleLogout() async {
   Modular.to.navigate('/login');
 }
 
+void handleAccountDeletion() async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  EasyRequest.token.jwt = 'EMPTY';
+  prefs.setString('token', 'EMPTY');
+  Modular.to.navigate(Modular.initialRoute);
+}
+
 void showLogoutDialog(BuildContext context) {
   showDialog(
     context: context,
@@ -243,17 +250,21 @@ class ContaPage extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
-                          child: Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.delete_forever,
-                                color: Color(0xFFFF0032),
-                              ),
-                              Text(' Desejo deletar minha conta',
-                                  style: (AppTheme.semibold_small_delete)),
-                            ],
-                          ),
+                          child: GestureDetector(
+                              onDoubleTap: () {
+                                handleAccountDeletion();
+                              },
+                              child: Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.delete_forever,
+                                    color: Color(0xFFFF0032),
+                                  ),
+                                  Text(' Desejo deletar minha conta',
+                                      style: (AppTheme.semibold_small_delete)),
+                                ],
+                              )),
                         ),
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 10),
