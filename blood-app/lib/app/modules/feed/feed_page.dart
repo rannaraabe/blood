@@ -1,5 +1,6 @@
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
+import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
 
 import 'widgets/card_child_feed.dart';
@@ -46,7 +47,7 @@ class FeedPage extends StatelessWidget {
                         style: AppTheme.regular_large_white,
                       ),
                       Text(
-                        'Júlia',
+                        EasyRequest.username,
                         style: AppTheme.bold_large_white,
                       ),
                     ],
