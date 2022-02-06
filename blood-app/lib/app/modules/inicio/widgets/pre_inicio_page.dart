@@ -2,7 +2,6 @@ import 'package:blood_app/app/modules/inicio/inicio_page.dart';
 import 'package:blood_app/app/modules/login/login_page.dart';
 import 'package:blood_app/app/modules/main/main_page.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
