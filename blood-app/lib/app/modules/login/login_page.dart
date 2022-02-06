@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:ffi';
 
-import 'package:blood_app/app/modules/cadastro/widgets/text_column.dart';
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
-import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
