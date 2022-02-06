@@ -8,10 +8,65 @@ import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
 
 class FeedPage extends StatelessWidget {
+  List<CardChildFeed> cardChildFeedList = [];
+
+  void buildCardChilds() {
+    // TODO: do a for loop instead, recovering registered publication data from backend
+    cardChildFeedList.add(
+      CardChildFeed(
+        image: Image.asset('assets/images/feed_image.png',),
+        publicationHour: '1 minuto',
+        donee: 'Maria Luiza',
+        bloodType: '0-',
+        age: 6,
+        donationCenter: 'Associação de deficientes físicos',
+        urgencyLevel: 'Urgente',
+      ),
+    );
+    cardChildFeedList.add(
+      CardChildFeed(
+        image: Image.asset('assets/images/feed_image2.jpg',),
+        publicationHour: '25 minutos',
+        donee: 'Letícia Duarte',
+        bloodType: 'B+',
+        age: 5,
+        donationCenter: 'Associação de deficientes físicos',
+        urgencyLevel: 'Urgente',
+      ),
+    );
+  }
+
+  Widget feedCards(width, height) {
+    final cards = <Widget>[];
+    for (var cardChildFeed in cardChildFeedList) {
+      cards.add(
+        CardFeed(
+          backgroundColor: Colors.white,
+          borderColor: AppTheme.grey,
+          width: width * 0.9,
+          height: height * 0.58,
+          child: cardChildFeed,
+        ),
+      );
+      cards.add(
+        SizedBox(
+          height: height * 0.045,
+        ),
+      );
+    }
+    return ListView(
+      scrollDirection: Axis.vertical,
+      children:
+        cards,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    buildCardChilds();
+
     return Scaffold(
       // bottomNavigationBar: BottonNavBar(),
       resizeToAvoidBottomInset: true,
@@ -62,15 +117,10 @@ class FeedPage extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  CardFeed(
-                    backgroundColor: Colors.white,
-                    borderColor: AppTheme.grey,
+                  SizedBox(
                     width: width * 0.9,
-                    height: height * 0.58,
-                    child: CardChildFeed(
-                      urgencyLevel: 'Urgente',
-                    ),
-                    // paddingTop: height * 0.0001,
+                    height: height * 0.65,
+                    child: feedCards(width, height),
                   ),
                 ],
               ),

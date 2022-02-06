@@ -6,9 +6,21 @@ import 'package:flutter/material.dart';
 class CardChildFeed extends StatelessWidget {
   const CardChildFeed({
     Key? key,
+    required this.image,
+    required this.publicationHour,
+    required this.donee,
+    required this.bloodType,
+    required this.age,
+    required this.donationCenter,
     required this.urgencyLevel,
   }) : super(key: key);
 
+  final Image image;
+  final String publicationHour;
+  final String donee;
+  final String bloodType;
+  final int age;
+  final String donationCenter;
   final String urgencyLevel;
 
   @override
@@ -27,9 +39,7 @@ class CardChildFeed extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(color: Colors.white, width: 3.0),
               ),
-              child: Image.asset(
-                'assets/images/feed_image.png',
-              ),
+              child: image,
             ),
             Align(
               alignment: Alignment.topRight,
@@ -73,7 +83,7 @@ class CardChildFeed extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Há 1 minuto',
+                    'Há $publicationHour',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -84,7 +94,7 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.006,
                   ),
                   Text(
-                    'Maria Luiza',
+                    donee,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -94,7 +104,7 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.001,
                   ),
                   Text(
-                    '6 anos, 20 km de distância',
+                    '$age anos, 20 km de distância',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
@@ -136,7 +146,7 @@ class CardChildFeed extends StatelessWidget {
                       Image.asset('assets/images/blood_drop.png'),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
-                        child: Text('O-',
+                        child: Text(bloodType,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
