@@ -2,17 +2,13 @@ import 'dart:convert';
 
 import 'package:blood_app/app/modules/cadastro/widgets/text_column.dart';
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
-import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../theme/app_theme.dart';
 import '../../utils/easy_request.dart';
 import 'package:http/http.dart' as http;
-
-import '../../utils/token.dart';
 
 void showDoneDialog(BuildContext context) {
   showDialog(

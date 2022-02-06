@@ -1,6 +1,5 @@
 import 'package:blood_app/app/modules/cadastro/cadastro_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:blood_app/app/modules/cadastro/cadastro_page.dart';
 
 class CadastroModule extends Module {
   @override
