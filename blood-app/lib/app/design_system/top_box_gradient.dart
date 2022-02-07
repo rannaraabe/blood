@@ -10,7 +10,7 @@ class TopBoxGradient extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Container(
       width: width,
-      height: height * 0.24,
+      height: height * 0.27,
       decoration: BoxDecoration(
       borderRadius: BorderRadius.only(
         bottomLeft: Radius.circular(120), bottomRight: Radius.circular(120)),
