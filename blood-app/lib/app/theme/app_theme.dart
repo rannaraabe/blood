@@ -23,6 +23,11 @@ class AppTheme {
     Color(0xFFF28888),
   ], radius: 1);
 
+  /// Background gradient
+  static const RadialGradient sideGradient = RadialGradient(colors: [
+    Color(0xFFF28888),
+  ], radius: 1);
+
   /// TextStyle names: style-font + size + color (when it isn't default)
   static const TextStyle regular_smallest_white = TextStyle(
     fontSize: 11.6,

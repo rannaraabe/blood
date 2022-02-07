@@ -1,8 +1,10 @@
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
+import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
 
+import 'filtros/filtros_page.dart';
 import 'publicacao/publicacao_page.dart';
 import 'widgets/card_child_feed.dart';
 import 'widgets/card_feed.dart';
@@ -71,7 +73,7 @@ class FeedPage extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     buildCardChilds();
 
-    void _showModalBottom(context) {
+    void _showModalBottom(context, widget) {
       FocusManager.instance.primaryFocus?.unfocus();
 
       showModalBottomSheet(
@@ -84,7 +86,7 @@ class FeedPage extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
           builder: (BuildContext bc) {
-            return Container(height: height * 0.95, child: PublicacaoPage());
+            return Container(height: height * 0.95, child: widget);
           });
     }
 
@@ -100,7 +102,7 @@ class FeedPage extends StatelessWidget {
             child: Icon(Icons.add, size: width * 0.1),
             backgroundColor: AppTheme.red,
             onPressed: () {
-              _showModalBottom(context);
+              _showModalBottom(context, PublicacaoPage());
             },
           ),
         ),
@@ -110,6 +112,30 @@ class FeedPage extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             TopBoxGradient(),
+            Padding(
+              padding: EdgeInsets.only(top: height * 0.15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: GestureDetector(
+                  onHorizontalDragEnd: (dragEndDetails) {
+                    _showModalBottom(context, FiltrosPage());
+                  },
+                  child: SideGradient(),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: height * 0.15),
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onHorizontalDragStart: (dragStartDetails) {
+                    _showModalBottom(context, FiltrosPage());
+                  },
+                  child: SideGradient(),
+                ),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(32),
               child: Column(
