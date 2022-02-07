@@ -3,6 +3,7 @@ import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
 
+import 'publicacao/publicacao_page.dart';
 import 'widgets/card_child_feed.dart';
 import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
@@ -14,7 +15,9 @@ class FeedPage extends StatelessWidget {
     // TODO: do a for loop instead, recovering registered publication data from backend
     cardChildFeedList.add(
       CardChildFeed(
-        image: Image.asset('assets/images/feed_image.png',),
+        image: Image.asset(
+          'assets/images/feed_image.png',
+        ),
         publicationHour: '1 minuto',
         donee: 'Maria Luiza',
         bloodType: '0-',
@@ -25,7 +28,9 @@ class FeedPage extends StatelessWidget {
     );
     cardChildFeedList.add(
       CardChildFeed(
-        image: Image.asset('assets/images/feed_image2.jpg',),
+        image: Image.asset(
+          'assets/images/feed_image2.jpg',
+        ),
         publicationHour: '25 minutos',
         donee: 'Letícia Duarte',
         bloodType: 'B+',
@@ -56,8 +61,7 @@ class FeedPage extends StatelessWidget {
     }
     return ListView(
       scrollDirection: Axis.vertical,
-      children:
-        cards,
+      children: cards,
     );
   }
 
@@ -66,6 +70,23 @@ class FeedPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     buildCardChilds();
+
+    void _showModalBottom(context) {
+      FocusManager.instance.primaryFocus?.unfocus();
+
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0)),
+          ),
+          backgroundColor: Colors.white,
+          builder: (BuildContext bc) {
+            return Container(height: height * 0.95, child: PublicacaoPage());
+          });
+    }
 
     return Scaffold(
       // bottomNavigationBar: BottonNavBar(),
@@ -78,7 +99,9 @@ class FeedPage extends StatelessWidget {
           child: FloatingActionButton(
             child: Icon(Icons.add, size: width * 0.1),
             backgroundColor: AppTheme.red,
-            onPressed: () {},
+            onPressed: () {
+              _showModalBottom(context);
+            },
           ),
         ),
       ),
