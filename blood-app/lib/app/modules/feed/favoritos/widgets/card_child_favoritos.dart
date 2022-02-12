@@ -97,7 +97,7 @@ class CardChildFavoritos extends StatelessWidget {
                     EdgeInsets.only(top: height * 0.014, right: width * 0.04),
                 child: LabelUrgency(
                   height: height * 0.035,
-                  width: width * 0.27,
+                  width: width * 0.22,
                   text: urgencyLevel,
                 ),
               ),
