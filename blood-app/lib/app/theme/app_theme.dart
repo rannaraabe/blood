@@ -26,6 +26,7 @@ class AppTheme {
   /// Background gradient
   static const RadialGradient sideGradient = RadialGradient(colors: [
     Color(0xFFF28888),
+    Color(0xFFF28888),
   ], radius: 1);
 
   /// TextStyle names: style-font + size + color (when it isn't default)
