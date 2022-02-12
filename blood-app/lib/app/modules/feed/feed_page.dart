@@ -1,4 +1,5 @@
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
+import 'package:blood_app/app/modules/feed/favoritos/favoritos_page.dart';
 import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
@@ -130,7 +131,7 @@ class FeedPage extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onHorizontalDragStart: (dragStartDetails) {
-                    _showModalBottom(context, FiltrosPage());
+                    _showModalBottom(context, FavoritosPage());
                   },
                   child: SideGradient(),
                 ),
