@@ -131,11 +131,18 @@ void handleSubmit(
   response.then((value) => handleResponse(value, context));
 }
 
-class PublicacaoPage extends StatelessWidget {
+class PublicacaoPage extends StatefulWidget {
   const PublicacaoPage({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<PublicacaoPage> createState() => _PublicacaoPageState();
+}
+
+class _PublicacaoPageState extends State<PublicacaoPage> {
+  String dropdownValue = 'Nível de Urgência';
+  
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -145,7 +152,6 @@ class PublicacaoPage extends StatelessWidget {
     TextEditingController bloodTypeController = TextEditingController();
     TextEditingController ageController = TextEditingController();
     TextEditingController donationCenterController = TextEditingController();
-    TextEditingController urgencyLevelController = TextEditingController();
 
     return Scaffold(
         body: SafeArea(
@@ -270,6 +276,6 @@ class PublicacaoPage extends StatelessWidget {
                           )),
                     ],
                   ),
-                ))));
+         ))));
   }
 }
