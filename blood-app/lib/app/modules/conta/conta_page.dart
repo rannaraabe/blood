@@ -76,7 +76,8 @@ class ContaPage extends StatelessWidget {
           );
         } else if (snapshot.hasData) {
           print(snapshot.data?.body);
-
+          Map<String, dynamic> jsonData = jsonDecode(snapshot.data!.body);
+          EasyRequest.user_id = jsonData['id'].toString();
           Usuario user = Usuario.fromJson(json.decode(snapshot.data!.body));
           return SizedBox(
             child: SingleChildScrollView(

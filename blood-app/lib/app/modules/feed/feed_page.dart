@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/modules/feed/favoritos/favoritos_page.dart';
 import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
@@ -10,38 +12,27 @@ import 'publicacao/publicacao_page.dart';
 import 'widgets/card_child_feed.dart';
 import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
+import 'package:http/http.dart' as http;
 
 class FeedPage extends StatelessWidget {
   List<CardChildFeed> cardChildFeedList = [];
 
-  void buildCardChilds() {
-    // TODO: do a for loop instead, recovering registered publication data from backend
-    cardChildFeedList.add(
-      CardChildFeed(
-        image: Image.asset(
-          'assets/images/feed_image.png',
-        ),
-        publicationHour: '1 minuto',
-        donee: 'Maria Luiza',
-        bloodType: '0-',
-        age: 6,
-        donationCenter: 'Associação de deficientes físicos',
-        urgencyLevel: 'Urgente',
-      ),
-    );
-    cardChildFeedList.add(
-      CardChildFeed(
-        image: Image.asset(
-          'assets/images/feed_image2.jpg',
-        ),
-        publicationHour: '25 minutos',
-        donee: 'Letícia Duarte',
-        bloodType: 'B+',
-        age: 5,
-        donationCenter: 'Associação de deficientes físicos',
-        urgencyLevel: 'Urgente',
-      ),
-    );
+  void buildCardChilds(List<dynamic> publications) {
+    publications.forEach((publication) => {
+          cardChildFeedList.add(
+            CardChildFeed(
+              image: Image.asset(
+                'assets/images/feed_image.png',
+              ),
+              publicationHour: '1 minuto',
+              donee: publication['nomeDonatario'],
+              bloodType: '0-',
+              age: 6,
+              donationCenter: 'Associação de deficientes físicos',
+              urgencyLevel: 'Urgente',
+            ),
+          )
+        });
   }
 
   Widget feedCards(width, height) {
@@ -72,7 +63,7 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    buildCardChilds();
+    //buildCardChilds();
 
     void _showModalBottom(context, widget) {
       FocusManager.instance.primaryFocus?.unfocus();
@@ -167,11 +158,31 @@ class FeedPage extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  SizedBox(
-                    width: width * 0.9,
-                    height: height * 0.65,
-                    child: feedCards(width, height),
-                  ),
+                  FutureBuilder<http.Response>(
+                      future: EasyRequest.fetchPublications(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                                color: AppTheme.strongRed),
+                          );
+                        } else if (snapshot.hasData) {
+                          print(snapshot.data?.body);
+                          List<dynamic> jsonData =
+                              jsonDecode(snapshot.data!.body);
+
+                          buildCardChilds(jsonData);
+                          //return Text("Carregou");
+                          //Publicacao publicacao = Usuario.fromJson(json.decode(snapshot.data!.body));
+                          return SizedBox(
+                            width: width * 0.9,
+                            height: height * 0.65,
+                            child: feedCards(width, height),
+                          );
+                        } else {
+                          return Text("Algo de errado não está certo");
+                        }
+                      }),
                 ],
               ),
             ),
