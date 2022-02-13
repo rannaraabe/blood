@@ -4,11 +4,18 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'widgets/publicacao_text_field.dart';
 
-class PublicacaoPage extends StatelessWidget {
+class PublicacaoPage extends StatefulWidget {
   const PublicacaoPage({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<PublicacaoPage> createState() => _PublicacaoPageState();
+}
+
+class _PublicacaoPageState extends State<PublicacaoPage> {
+  String dropdownValue = 'Nível de Urgência';
+  
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -18,7 +25,6 @@ class PublicacaoPage extends StatelessWidget {
     TextEditingController bloodTypeController = TextEditingController();
     TextEditingController ageController = TextEditingController();
     TextEditingController donationCenterController = TextEditingController();
-    TextEditingController urgencyLevelController = TextEditingController();
 
     return Padding(
       padding: const EdgeInsets.all(32.0),
@@ -90,15 +96,50 @@ class PublicacaoPage extends StatelessWidget {
           SizedBox(
             height: height * 0.014,
           ),
-          PublicacaoTextField(
+          Container(
             height: height * 0.06,
             width: width * 0.8,
-            hintText: 'Nível de urgência',
-            textEditingController: urgencyLevelController,
-            icon: Icon(
-              IconData(0xf82b, fontFamily: 'MaterialIcons'), 
-              color: AppTheme.grey,
-              size: width * 0.1,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+              border: Border.all(color: Colors.black26),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  blurRadius: 7.0,
+                  offset: Offset(2.0, 3.0),
+                ),
+              ],
+            ),
+            child:
+              DropdownButton<String>(
+                value: dropdownValue,
+                icon: Padding(
+                padding: EdgeInsets.only(left: width * 0.32),
+                child: Icon(
+                  IconData(0xf82b, fontFamily: 'MaterialIcons'), 
+                  color: AppTheme.grey,
+                  size: width * 0.1,
+                ),
+              ),
+              style: const TextStyle(color: Colors.black26),
+              borderRadius: BorderRadius.all(Radius.circular(30)),
+              underline: SizedBox(),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+              },
+              items: <String>['Nível de Urgência', 'Urgente', 'Prioridade média', 'Sem urgência']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 25),
+                    child: Text(value),
+                  ),
+                );
+              }).toList(),
             ),
           ),
           SizedBox(
