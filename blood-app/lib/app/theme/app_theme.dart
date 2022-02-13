@@ -200,4 +200,17 @@ class AppTheme {
     fontWeight: FontWeight.w400,
     color: Colors.white,
   );
+
+  static const TextStyle medium_gray = TextStyle(
+    fontSize: 20,
+    fontFamily: 'IBM Plex Sans',
+    fontWeight: FontWeight.w500,
+    color: Colors.black54,
+  );
+
+  static const TextStyle regular_gray = TextStyle(
+    fontSize: 20,
+    fontFamily: 'IBM Plex Sans',
+    color: Colors.black54,
+  );
 }
