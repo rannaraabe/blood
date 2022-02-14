@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/modules/feed/favoritos/favoritos_page.dart';
-import 'package:blood_app/app/modules/feed/publicacao/widgets/dropdownButtonFunctions.dart';
 import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import 'filtros/filtros_page.dart';
 import 'publicacao/publicacao_page.dart';
+import 'publicacao/widgets/dropdown_button_publicacao.dart';
 import 'widgets/card_child_feed.dart';
 import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
