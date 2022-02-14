@@ -40,7 +40,10 @@ class _CardFeedState extends State<CardFeed> {
             ]),
         child: Padding(
           padding: EdgeInsets.only(top: widget.paddingTop ?? 0),
-          child: widget.child,
+          child: Padding(
+            padding: EdgeInsets.only(top: widget.height * 0.008),
+            child: widget.child,
+          ),
         ));
   }
 }

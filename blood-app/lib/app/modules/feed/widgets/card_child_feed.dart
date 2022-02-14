@@ -39,7 +39,13 @@ class CardChildFeed extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(color: Colors.white, width: 3.0),
               ),
-              child: image,
+              child: ClipRRect(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(35),
+                  topRight: Radius.circular(35),
+                ),
+                child: image
+              ),
             ),
             Align(
               alignment: Alignment.topRight,
