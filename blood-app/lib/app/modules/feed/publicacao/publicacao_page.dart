@@ -74,8 +74,8 @@ void showLoadingDialog(
   showDialog(
     context: context,
     builder: (BuildContext context) {
-      handleSubmit(context, doneeNameController, bloodTypeIdx,
-          ageController, donationCenterIdx, urgencyLevelIdx);
+      handleSubmit(context, doneeNameController, bloodTypeIdx, ageController,
+          donationCenterIdx, urgencyLevelIdx);
       return Dialog(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(30.0))),
@@ -122,7 +122,7 @@ void handleSubmit(
     String urgencyLevelIdx) {
   final response = EasyRequest.cadastrarPublicacao(
       donationCenterIdx, //donationCenterController.text,
-      EasyRequest.user_id, // USUÁRIO´[CORRIGIR DPS]
+      EasyRequest.user_id,
       doneeNameController.text,
       "1", //IMAGE CODE [CORRIGIR DPS]
       "1998-04-06", // IDADE DONATARIO
@@ -378,7 +378,8 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                                 doneeNameController,
                                 getBloodTypeIdx(dropdownBloodTypeValue),
                                 ageController,
-                                getDonationCenterIdx(dropdownDonationCenterValue),
+                                getDonationCenterIdx(
+                                    dropdownDonationCenterValue),
                                 getUrgencyLevelIdx(dropdownUrgencyLevelValue),
                               );
                             },

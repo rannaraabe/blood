@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/modules/feed/favoritos/favoritos_page.dart';
+import 'package:blood_app/app/modules/feed/publicacao/widgets/dropdownButtonFunctions.dart';
 import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
@@ -24,12 +25,23 @@ class FeedPage extends StatelessWidget {
               image: Image.asset(
                 'assets/images/feed_image.png',
               ),
-              publicationHour: '1 minuto',
+              publicationHour: DateTime.now()
+                      .difference(DateTime.parse(
+                          publication['dataDeCriacao'].toString()))
+                      .inHours
+                      .toString() +
+                  "Horas", // Definir melhor para casos com maior e menor duração ex: 30 min, 2 dias
               donee: publication['nomeDonatario'],
-              bloodType: '0-',
-              age: 6,
+              bloodType: getBloodType(publication['tipoSanguineo'].toString()),
+              age: ((DateTime.now()
+                          .difference(DateTime.parse(
+                              publication['idadeDonatario'].toString()))
+                          .inDays) /
+                      365)
+                  .floor(),
               donationCenter: 'Associação de deficientes físicos',
-              urgencyLevel: 'Urgente',
+              urgencyLevel:
+                  getUrgencyLevel(publication['prioridade'].toString()),
             ),
           )
         });
@@ -167,6 +179,7 @@ class FeedPage extends StatelessWidget {
                                 color: AppTheme.strongRed),
                           );
                         } else if (snapshot.hasData) {
+                          print("PUBLICATION");
                           print(snapshot.data?.body);
                           List<dynamic> jsonData =
                               jsonDecode(snapshot.data!.body);

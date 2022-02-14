@@ -77,6 +77,7 @@ class EasyRequest {
       String dataCriacao,
       String prioridade,
       String tipoSanguineo) async {
+    print("CADASTRANDO");
     return await http.post(Uri.parse(BackendRoutes.PUBLICATION),
         headers: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',

@@ -22,6 +22,23 @@ String getBloodTypeIdx(String dropdownBloodTypeValue) {
     return '7';
 }
 
+String getBloodType(String dropdownBloodTypeValue) {
+  if (dropdownBloodTypeValue == '1')
+    return 'A+';
+  else if (dropdownBloodTypeValue == '2')
+    return 'B+';
+  else if (dropdownBloodTypeValue == '3')
+    return 'AB+';
+  else if (dropdownBloodTypeValue == '4')
+    return 'O+';
+  else if (dropdownBloodTypeValue == '5')
+    return 'A-';
+  else if (dropdownBloodTypeValue == '6')
+    return 'B-';
+  else
+    return 'O-';
+}
+
 String getUrgencyLevelIdx(String dropdownUrgencyLevelValue) {
   if (dropdownUrgencyLevelValue == 'Urgente')
     return '1';
@@ -29,4 +46,13 @@ String getUrgencyLevelIdx(String dropdownUrgencyLevelValue) {
     return '2';
   else
     return '3';
+}
+
+String getUrgencyLevel(String dropdownUrgencyLevelValue) {
+  if (dropdownUrgencyLevelValue == '1')
+    return 'Urgente';
+  else if (dropdownUrgencyLevelValue == '2')
+    return 'Prioridade Média';
+  else
+    return 'Sem Prioridade';
 }
