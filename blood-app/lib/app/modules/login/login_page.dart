@@ -190,9 +190,14 @@ class LoginPage extends StatelessWidget {
                                 'Não tem uma conta? ',
                                 style: AppTheme.small_black,
                               ),
-                              Text(
-                                'Registre-se',
-                                style: AppTheme.bold_small_black,
+                              GestureDetector(
+                                onTap: () {
+                                  Modular.to.pushNamed("/cadastro");
+                                },
+                                child: Text(
+                                  'Registre-se',
+                                  style: AppTheme.bold_small_black,
+                                ),
                               ),
                             ]),
                         Text(
