@@ -6,6 +6,7 @@ import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
 import 'filtros/filtros_page.dart';
 import 'publicacao/publicacao_page.dart';
@@ -39,7 +40,9 @@ class FeedPage extends StatelessWidget {
                           .inDays) /
                       365)
                   .floor(),
-              donationCenter: 'Associação de deficientes físicos',
+              donationCenter: Tuple2(
+                  publication['unidadeDeDoacao']['endereco']['latitude'],
+                  publication['unidadeDeDoacao']['endereco']['latitude']),
               urgencyLevel:
                   getUrgencyLevel(publication['prioridade'].toString()),
             ),
