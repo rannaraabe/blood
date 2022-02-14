@@ -28,10 +28,12 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
     TextEditingController doneeNameController = TextEditingController();
     TextEditingController ageController = TextEditingController();
 
-    return Scaffold(
-      body: SafeArea(
+    return Padding(
+      padding: EdgeInsets.only(top: height * 0.01),
+      child: SizedBox(
+        width: width,
+        height: height * 0.75,
         child: SingleChildScrollView(
-          reverse: true,
           child: Padding(
             padding: const EdgeInsets.all(32.0),
             child: Column(
@@ -44,8 +46,8 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                         onTap: () {
                           Modular.to.pop();
                         },
-                        child: Icon(IconData(0xf645,
-                            fontFamily: 'MaterialIcons'))),
+                        child: Icon(
+                            IconData(0xf645, fontFamily: 'MaterialIcons'))),
                     Padding(
                       padding: EdgeInsets.only(left: width * 0.15),
                       child: Text(
@@ -76,21 +78,20 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                   height: height * 0.014,
                 ),
                 DropdownButtonPublicacao(
-                  dropdownValue: dropdownBloodTypeValue, 
-                  padding: EdgeInsets.only(left: width * 0.35), 
-                  dropdownMenuItems: <String>[
-                    'Tipo de sangue',
-                    'A+',
-                    'B+',
-                    'AB+',
-                    'O+',
-                    'A-',
-                    'B-',
-                    'AB-'
-                  ],
-                  width: width,
-                  height: height
-                ),
+                    dropdownValue: dropdownBloodTypeValue,
+                    padding: EdgeInsets.only(left: width * 0.35),
+                    dropdownMenuItems: <String>[
+                      'Tipo de sangue',
+                      'A+',
+                      'B+',
+                      'AB+',
+                      'O+',
+                      'A-',
+                      'B-',
+                      'AB-'
+                    ],
+                    width: width,
+                    height: height),
                 SizedBox(
                   height: height * 0.014,
                 ),
@@ -104,74 +105,70 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                   height: height * 0.014,
                 ),
                 DropdownButtonPublicacao(
-                  dropdownValue: dropdownDonationCenterValue, 
-                  padding: EdgeInsets.only(left: width * 0.41),
-                  dropdownMenuItems: <String>[
-                    'Onde doar?',
-                    'Hemonorte',
-                    'Hemolab',
-                  ],
-                  width: width,
-                  height: height
-                ),
+                    dropdownValue: dropdownDonationCenterValue,
+                    padding: EdgeInsets.only(left: width * 0.41),
+                    dropdownMenuItems: <String>[
+                      'Onde doar?',
+                      'Hemonorte',
+                      'Hemolab',
+                    ],
+                    width: width,
+                    height: height),
                 SizedBox(
                   height: height * 0.014,
                 ),
                 DropdownButtonPublicacao(
-                  dropdownValue: dropdownUrgencyLevelValue, 
-                  padding: EdgeInsets.only(left: width * 0.32),
-                  dropdownMenuItems: <String>[
-                    'Nível de Urgência',
-                    'Urgente',
-                    'Prioridade média',
-                    'Sem urgência'
-                  ],
-                  width: width,
-                  height: height
-                ),
+                    dropdownValue: dropdownUrgencyLevelValue,
+                    padding: EdgeInsets.only(left: width * 0.32),
+                    dropdownMenuItems: <String>[
+                      'Nível de Urgência',
+                      'Urgente',
+                      'Prioridade média',
+                      'Sem urgência'
+                    ],
+                    width: width,
+                    height: height),
                 SizedBox(
                   height: height * 0.038,
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
-                  child: GestureDetector(
-                    onTap: () {
-                      showLoadingDialog(
-                        context,
-                        doneeNameController,
-                        getBloodTypeIdx(dropdownBloodTypeValue),
-                        ageController,
-                        getDonationCenterIdx(
-                            dropdownDonationCenterValue),
-                        getUrgencyLevelIdx(dropdownUrgencyLevelValue),
-                      );
-                    },
-                    child: Container(
-                      height: height * 0.06,
-                      width: width * 0.8,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(18.0),
-                        color: AppTheme.black,
+                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 20),
+                    child: GestureDetector(
+                      onTap: () {
+                        showLoadingDialog(
+                          context,
+                          doneeNameController,
+                          getBloodTypeIdx(dropdownBloodTypeValue),
+                          ageController,
+                          getDonationCenterIdx(dropdownDonationCenterValue),
+                          getUrgencyLevelIdx(dropdownUrgencyLevelValue),
+                        );
+                      },
+                      child: Container(
+                        height: height * 0.06,
+                        width: width * 0.8,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18.0),
+                          color: AppTheme.black,
+                        ),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                'Publicar',
+                                style: AppTheme.regular_small_white,
+                                textAlign: TextAlign.center,
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              'Publicar',
-                              style: AppTheme.regular_small_white,
-                              textAlign: TextAlign.center,
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  )
-                ),
+                    )),
               ],
             ),
           )
-        )
-      )
+        ),
+      ),
     );
   }
 }
