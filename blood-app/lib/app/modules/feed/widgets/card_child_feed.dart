@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:blood_app/app/modules/feed/widgets/label_urgency.dart';
 import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 
 import '../../mapa/widgets/mapa_utils.dart';
@@ -10,6 +13,7 @@ import '../../mapa/widgets/mapa_utils.dart';
 class CardChildFeed extends StatelessWidget {
   const CardChildFeed({
     Key? key,
+    required this.id,
     required this.image,
     required this.publicationHour,
     required this.donee,
@@ -19,6 +23,7 @@ class CardChildFeed extends StatelessWidget {
     required this.urgencyLevel,
   }) : super(key: key);
 
+  final id;
   final Image image;
   final String publicationHour;
   final String donee;
@@ -32,6 +37,7 @@ class CardChildFeed extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final edgeInsets = EdgeInsets.fromLTRB(width * 0.04, 0.0, 0, width * 0.006);
+    bool isFavorite = false;
     return Column(
       children: [
         Stack(
@@ -71,13 +77,25 @@ class CardChildFeed extends StatelessWidget {
                 height: height * 0.055,
                 width: height * 0.055,
                 child: FloatingActionButton(
-                  child: Image.asset(
-                    'assets/images/hearth.png',
-                    height: height * 0.44,
-                    width: width * 0.44,
+                  child: Icon(
+                    Icons.favorite,
+                    color: (isFavorite) ? AppTheme.red : AppTheme.grey,
+                    size: 25,
                   ),
                   backgroundColor: Colors.white,
-                  onPressed: () {},
+                  onPressed: () async {
+                    isFavorite = true;
+                    SharedPreferences prefs =
+                        await SharedPreferences.getInstance();
+                    bool? isAFavoritePublication =
+                        prefs.getBool(this.id.toString());
+                    if (isAFavoritePublication != null) {
+                      prefs.setBool(
+                          this.id.toString(), !isAFavoritePublication);
+                    } else {
+                      prefs.setBool(this.id.toString(), true);
+                    }
+                  },
                 ),
               ),
             ),

@@ -23,6 +23,7 @@ class FeedPage extends StatelessWidget {
     publications.forEach((publication) => {
           cardChildFeedList.add(
             CardChildFeed(
+              id: publication['id'],
               image: Image.asset(
                 'assets/images/feed_image.png',
               ),
@@ -78,6 +79,7 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
+    List<CardChildFeed> originalList = cardChildFeedList;
     //buildCardChilds();
 
     void _showModalBottom(context, widget) {
@@ -94,6 +96,25 @@ class FeedPage extends StatelessWidget {
           backgroundColor: Colors.white,
           builder: (BuildContext bc) {
             return Container(height: height * 0.95, child: widget);
+          });
+    }
+
+    void _showModalBottomFavoritos(context) {
+      FocusManager.instance.primaryFocus?.unfocus();
+
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0)),
+          ),
+          backgroundColor: Colors.white,
+          builder: (BuildContext bc) {
+            return Container(
+                height: height * 0.95,
+                child: FavoritosPage(originalList: originalList));
           });
     }
 
@@ -137,7 +158,7 @@ class FeedPage extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onHorizontalDragStart: (dragStartDetails) {
-                    _showModalBottom(context, FavoritosPage());
+                    _showModalBottomFavoritos(context);
                   },
                   child: SideGradient(),
                 ),
