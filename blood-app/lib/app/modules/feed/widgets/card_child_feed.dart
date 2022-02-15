@@ -10,8 +10,8 @@ import 'package:tuple/tuple.dart';
 
 import '../../mapa/widgets/mapa_utils.dart';
 
-class CardChildFeed extends StatelessWidget {
-  const CardChildFeed({
+class CardChildFeed extends StatefulWidget {
+  CardChildFeed({
     Key? key,
     required this.id,
     required this.image,
@@ -21,6 +21,7 @@ class CardChildFeed extends StatelessWidget {
     required this.age,
     required this.donationCenter,
     required this.urgencyLevel,
+    required this.isFavorite,
   }) : super(key: key);
 
   final id;
@@ -31,13 +32,20 @@ class CardChildFeed extends StatelessWidget {
   final int age;
   final Tuple2 donationCenter;
   final String urgencyLevel;
+  bool isFavorite;
 
+  @override
+  State<CardChildFeed> createState() => _CardChildFeedState();
+}
+
+class _CardChildFeedState extends State<CardChildFeed> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final edgeInsets = EdgeInsets.fromLTRB(width * 0.04, 0.0, 0, width * 0.006);
-    bool isFavorite = false;
+    // bool isFavorite = false;
+
     return Column(
       children: [
         Stack(
@@ -54,7 +62,7 @@ class CardChildFeed extends StatelessWidget {
                     topLeft: Radius.circular(35),
                     topRight: Radius.circular(35),
                   ),
-                  child: image),
+                  child: widget.image),
             ),
             Align(
               alignment: Alignment.topRight,
@@ -64,7 +72,7 @@ class CardChildFeed extends StatelessWidget {
                 child: LabelUrgency(
                   height: height * 0.035,
                   width: width * 0.27,
-                  text: urgencyLevel,
+                  text: widget.urgencyLevel,
                 ),
               ),
             ),
@@ -79,21 +87,23 @@ class CardChildFeed extends StatelessWidget {
                 child: FloatingActionButton(
                   child: Icon(
                     Icons.favorite,
-                    color: (isFavorite) ? AppTheme.red : AppTheme.grey,
+                    color: (widget.isFavorite) ? AppTheme.red : AppTheme.grey,
                     size: 25,
                   ),
                   backgroundColor: Colors.white,
                   onPressed: () async {
-                    isFavorite = true;
+                    setState(() {
+                      widget.isFavorite = !widget.isFavorite;
+                    });
                     SharedPreferences prefs =
                         await SharedPreferences.getInstance();
                     bool? isAFavoritePublication =
-                        prefs.getBool(this.id.toString());
+                        prefs.getBool(this.widget.id.toString());
                     if (isAFavoritePublication != null) {
                       prefs.setBool(
-                          this.id.toString(), !isAFavoritePublication);
+                          this.widget.id.toString(), !isAFavoritePublication);
                     } else {
-                      prefs.setBool(this.id.toString(), true);
+                      prefs.setBool(this.widget.id.toString(), true);
                     }
                   },
                 ),
@@ -110,7 +120,7 @@ class CardChildFeed extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Há $publicationHour',
+                    'Há ${widget.publicationHour}',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -121,7 +131,7 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.006,
                   ),
                   Text(
-                    donee,
+                    widget.donee,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -131,12 +141,12 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.001,
                   ),
                   Text(
-                    '$age anos, ' +
+                    '${widget.age} anos, ' +
                         latLongDistance(
                                 EasyRequest.user_location.item1,
                                 EasyRequest.user_location.item2,
-                                donationCenter.item1,
-                                donationCenter.item2)
+                                widget.donationCenter.item1,
+                                widget.donationCenter.item2)
                             .toStringAsFixed(2) +
                         'km',
                     style: TextStyle(
@@ -180,7 +190,7 @@ class CardChildFeed extends StatelessWidget {
                       Image.asset('assets/images/blood_drop.png'),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
-                        child: Text(bloodType,
+                        child: Text(widget.bloodType,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
