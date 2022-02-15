@@ -16,6 +16,9 @@ class AppTheme {
   /// Grey #CCCCCC
   static const grey = Color(0XFFCCCCCC);
 
+  /// Rose Quartz #FADCD9
+  static const roseQuartz = Color(0xFFFADCD9);
+
   /// Background gradient
   static const RadialGradient backgroundGradient = RadialGradient(colors: [
     Color(0xFFFF0032),
@@ -25,8 +28,8 @@ class AppTheme {
 
   /// Background gradient
   static const RadialGradient sideGradient = RadialGradient(colors: [
-    Color(0xFFF28888),
-    Color(0xFFF28888),
+    roseQuartz,
+    roseQuartz,
   ], radius: 1);
 
   /// TextStyle names: style-font + size + color (when it isn't default)

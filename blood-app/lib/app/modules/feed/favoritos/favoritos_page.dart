@@ -35,7 +35,7 @@ class FavoritosPage extends StatelessWidget {
             donee: publication.donee,
             bloodType: publication.bloodType,
             age: publication.age,
-            donationCenter: 'Associação de deficientes físicos',
+            donationCenter: publication.donationCenter,
             urgencyLevel: publication.urgencyLevel,
           ),
         );
@@ -111,20 +111,17 @@ class FavoritosPage extends StatelessWidget {
                     SizedBox(
                       height: height * 0.045,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8),
-                      child: SizedBox(
-                        width: width,
-                        height: height * 0.75,
-                        child: Column(children: [
-                          Image.asset(
-                              'assets/images/nenhuma_publicacao_image.png'),
-                          Text(
-                            "Nenhuma Publicação Salva",
-                            style: AppTheme.regular_medium,
-                          )
-                        ]),
-                      ),
+                    SizedBox(
+                      width: width,
+                      height: height * 0.75,
+                      child: Column(children: [
+                        Image.asset(
+                            'assets/images/nenhuma_publicacao_image.png'),
+                        Text(
+                          "Nenhuma Publicação Salva",
+                          style: AppTheme.regular_medium,
+                        )
+                      ]),
                     ),
                   ],
                 );

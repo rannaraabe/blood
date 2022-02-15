@@ -16,7 +16,7 @@ class SideGradient extends StatelessWidget {
         gradient: AppTheme.sideGradient,
         boxShadow: const [
           BoxShadow(
-            color: AppTheme.pink,
+            color: AppTheme.roseQuartz,
             spreadRadius: 30,
             blurRadius: 12,
           ),

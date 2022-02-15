@@ -43,9 +43,10 @@ class FeedPage extends StatelessWidget {
                   .floor(),
               donationCenter: Tuple2(
                   publication['unidadeDeDoacao']['endereco']['latitude'],
-                  publication['unidadeDeDoacao']['endereco']['latitude']),
+                  publication['unidadeDeDoacao']['endereco']['longitude']),
               urgencyLevel:
                   getUrgencyLevel(publication['prioridade'].toString()),
+              isFavorite: false,
             ),
           )
         });
