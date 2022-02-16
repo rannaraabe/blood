@@ -28,7 +28,9 @@ class ConteudoRequisitosPage extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(15, 15, 0, 10),
                         child: GestureDetector(
                           onTap: () {
-                            Modular.to.pushNamed('/conteudo');
+                            //Modular.to.pushNamed('/conteudo');
+                            Modular.to
+                                .popUntil(ModalRoute.withName('/conteudo'));
                           },
                           child: Icon(Icons.arrow_back_ios),
                         ),
