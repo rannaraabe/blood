@@ -32,6 +32,7 @@ class InicioPage extends StatelessWidget {
                           height: height * 0.06,
                           width: width * 0.50,
                           text: '     Registre-se',
+                          route: "/cadastro",
                         ),
                       ),
                       Positioned(

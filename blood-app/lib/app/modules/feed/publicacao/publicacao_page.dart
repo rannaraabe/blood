@@ -88,9 +88,10 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                         'B+',
                         'AB+',
                         'O+',
+                        'O-',
                         'A-',
                         'B-',
-                        'AB-'
+                        'AB-',
                       ],
                       width: width,
                       height: height),

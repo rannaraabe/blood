@@ -1,3 +1,5 @@
+import 'package:blood_app/app/modules/feed/filtros/filtros_controller.dart';
+import 'package:blood_app/app/modules/feed/filtros/widgets/filter_by_distance.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,6 +13,7 @@ class FiltrosPage extends StatefulWidget {
 }
 
 class _FiltrosPageState extends State<FiltrosPage> {
+  FiltrosController filtrosController = FiltrosController();
   bool aPlusChecked = false;
   Map<String, bool> checklistBloodValues = {
     'A+': false,
@@ -52,7 +55,8 @@ class _FiltrosPageState extends State<FiltrosPage> {
                         onTap: () {
                           Modular.to.pop();
                         },
-                        child: Icon(IconData(0xf645, fontFamily: 'MaterialIcons'))),
+                        child: Icon(
+                            IconData(0xf645, fontFamily: 'MaterialIcons'))),
                     Padding(
                       padding: EdgeInsets.only(left: width * 0.28),
                       child: Text(
@@ -80,8 +84,9 @@ class _FiltrosPageState extends State<FiltrosPage> {
                   child: ListView(
                     children: checklistBloodValues.keys.map((String key) {
                       return CheckboxListTile(
-                        visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                        dense:true,
+                        visualDensity:
+                            VisualDensity(horizontal: -4, vertical: -4),
+                        dense: true,
                         contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
                         title: Text(
                           key,
@@ -90,7 +95,7 @@ class _FiltrosPageState extends State<FiltrosPage> {
                         activeColor: AppTheme.red,
                         controlAffinity: ListTileControlAffinity.leading,
                         value: checklistBloodValues[key],
-                        onChanged: (bool ?value) {
+                        onChanged: (bool? value) {
                           setState(() {
                             checklistBloodValues[key] = value!;
                           });
@@ -117,8 +122,9 @@ class _FiltrosPageState extends State<FiltrosPage> {
                   child: ListView(
                     children: checklistUrgencyValues.keys.map((String key) {
                       return CheckboxListTile(
-                        visualDensity: VisualDensity(horizontal: -4, vertical: -4),
-                        dense:true,
+                        visualDensity:
+                            VisualDensity(horizontal: -4, vertical: -4),
+                        dense: true,
                         contentPadding: EdgeInsets.only(left: 0.0, right: 0.0),
                         title: Text(
                           key,
@@ -127,7 +133,7 @@ class _FiltrosPageState extends State<FiltrosPage> {
                         activeColor: AppTheme.red,
                         controlAffinity: ListTileControlAffinity.leading,
                         value: checklistUrgencyValues[key],
-                        onChanged: (bool ?value) {
+                        onChanged: (bool? value) {
                           setState(() {
                             checklistUrgencyValues[key] = value!;
                           });
@@ -148,52 +154,36 @@ class _FiltrosPageState extends State<FiltrosPage> {
                     ),
                   ],
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: width * 0.015),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Menos de 10 km',
-                        style: AppTheme.regular_gray,
-                      ),
-                    ],
+                FilterByDistance(
+                  width: width,
+                  onTap: () {},
+                  text: Text(
+                    'Menos de 10 km',
+                    style: AppTheme.regular_gray,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: width * 0.015),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '10km a 50km',
-                        style: AppTheme.regular_gray,
-                      ),
-                    ],
+                FilterByDistance(
+                  width: width,
+                  onTap: () {},
+                  text: Text(
+                    '10km a 50km',
+                    style: AppTheme.regular_gray,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: width * 0.015),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        '50km a 100km',
-                        style: AppTheme.regular_gray,
-                      ),
-                    ],
+                FilterByDistance(
+                  width: width,
+                  onTap: () {},
+                  text: Text(
+                    '50km a 100km',
+                    style: AppTheme.regular_gray,
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(top: width * 0.015),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Mais de 100km',
-                        style: AppTheme.regular_gray,
-                      ),
-                    ],
+                FilterByDistance(
+                  width: width,
+                  onTap: () {},
+                  text: Text(
+                    'Mais de 100km',
+                    style: AppTheme.regular_gray,
                   ),
                 ),
                 SizedBox(
