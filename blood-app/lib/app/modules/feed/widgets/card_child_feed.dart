@@ -40,6 +40,16 @@ class CardChildFeed extends StatefulWidget {
 }
 
 class _CardChildFeedState extends State<CardChildFeed> {
+  Future<void> setFavorite() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if ((prefs.getBool(widget.id.toString()) != null) &&
+        (prefs.getBool(widget.id.toString()) == true)) {
+      setState(() {
+        widget.isFavorite = true;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -85,29 +95,35 @@ class _CardChildFeedState extends State<CardChildFeed> {
               child: Container(
                 height: height * 0.055,
                 width: height * 0.055,
-                child: FloatingActionButton(
-                  child: Icon(
-                    Icons.favorite,
-                    color: (widget.isFavorite) ? AppTheme.red : AppTheme.grey,
-                    size: 25,
-                  ),
-                  backgroundColor: Colors.white,
-                  onPressed: () async {
-                    setState(() {
-                      widget.isFavorite = !widget.isFavorite;
-                    });
-                    SharedPreferences prefs =
-                        await SharedPreferences.getInstance();
-                    bool? isAFavoritePublication =
-                        prefs.getBool(this.widget.id.toString());
-                    if (isAFavoritePublication != null) {
-                      prefs.setBool(
-                          this.widget.id.toString(), !isAFavoritePublication);
-                    } else {
-                      prefs.setBool(this.widget.id.toString(), true);
-                    }
-                  },
-                ),
+                child: FutureBuilder<void>(
+                    future: setFavorite(),
+                    builder: (context, snapshot) {
+                      return FloatingActionButton(
+                        child: Icon(
+                          Icons.favorite,
+                          color: (widget.isFavorite)
+                              ? AppTheme.red
+                              : AppTheme.grey,
+                          size: 25,
+                        ),
+                        backgroundColor: Colors.white,
+                        onPressed: () async {
+                          setState(() {
+                            widget.isFavorite = !widget.isFavorite;
+                          });
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          bool? isAFavoritePublication =
+                              prefs.getBool(this.widget.id.toString());
+                          if (isAFavoritePublication != null) {
+                            prefs.setBool(this.widget.id.toString(),
+                                !isAFavoritePublication);
+                          } else {
+                            prefs.setBool(this.widget.id.toString(), true);
+                          }
+                        },
+                      );
+                    }),
               ),
             ),
           ],
