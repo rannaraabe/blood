@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../mapa/widgets/mapa_utils.dart';
 
@@ -222,12 +223,36 @@ class _CardChildFeedState extends State<CardChildFeed> {
             ],
           ),
         ),
-        InicioButton(
+        /* InicioButton(
           height: height * 0.06,
           width: width * 0.6,
           text: 'Doar',
           route: "",
-        ),
+        ), */
+        GestureDetector(
+          onTap: () {
+            launch("tel://3232-6701");
+          },
+          child: Container(
+            height: height * 0.06,
+            width: width * 0.6,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18.0),
+              color: AppTheme.black,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Doar",
+                    style: AppTheme.regular_small_white,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

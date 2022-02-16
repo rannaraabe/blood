@@ -41,7 +41,7 @@ class _FavoritosPageState extends State<FavoritosPage> {
         cardChildFavoritsList.add(
           CardChildFavoritos(
             image: Image.asset(
-              'assets/images/casimiro.jpg',
+              'assets/images/djackson123.jpg',
             ),
             publicationHour: publication.publicationHour,
             donee: publication.donee,

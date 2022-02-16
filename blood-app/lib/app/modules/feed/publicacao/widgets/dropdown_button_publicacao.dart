@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 String getDonationCenterIdx(String dropdownDonationCenterValue) {
   if (dropdownDonationCenterValue == 'Hemonorte')
     return '1';
-  else
+  else if (dropdownDonationCenterValue == 'Hemovida')
     return '2';
+  else
+    return '3';
 }
 
 String getBloodTypeIdx(String dropdownBloodTypeValue) {
@@ -60,7 +62,6 @@ String getUrgencyLevel(String dropdownUrgencyLevelValue) {
     return 'Sem Prioridade';
 }
 
-
 class DropdownButtonPublicacao extends StatefulWidget {
   DropdownButtonPublicacao({
     Key? key,
@@ -78,7 +79,8 @@ class DropdownButtonPublicacao extends StatefulWidget {
   final double height;
 
   @override
-  State<DropdownButtonPublicacao> createState() => _DropdownButtonPublicacaoState();
+  State<DropdownButtonPublicacao> createState() =>
+      _DropdownButtonPublicacaoState();
 }
 
 class _DropdownButtonPublicacaoState extends State<DropdownButtonPublicacao> {
@@ -117,7 +119,8 @@ class _DropdownButtonPublicacaoState extends State<DropdownButtonPublicacao> {
             widget.dropdownValue = newValue!;
           });
         },
-        items: widget.dropdownMenuItems.map<DropdownMenuItem<String>>((String value) {
+        items: widget.dropdownMenuItems
+            .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
             value: value,
             child: Padding(

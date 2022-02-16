@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:blood_app/app/models/usuario.dart';
 import 'package:blood_app/app/modules/cadastro/widgets/text_general.dart';
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
+import 'package:blood_app/app/modules/feed/publicacao/widgets/dropdown_button_publicacao.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 
 import 'package:flutter/material.dart';
@@ -154,7 +155,8 @@ class ContaPage extends StatelessWidget {
                                         size: 30,
                                       ),
                                       Text(
-                                        "A+",
+                                        getBloodType(
+                                            user.tipoSanguineo.toString()),
                                         style: AppTheme.semibold_small_red,
                                       ),
                                       Text(
