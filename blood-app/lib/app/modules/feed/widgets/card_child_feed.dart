@@ -5,6 +5,7 @@ import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tuple/tuple.dart';
 
@@ -209,6 +210,7 @@ class _CardChildFeedState extends State<CardChildFeed> {
           height: height * 0.06,
           width: width * 0.6,
           text: 'Doar',
+          route: "",
         ),
       ],
     );

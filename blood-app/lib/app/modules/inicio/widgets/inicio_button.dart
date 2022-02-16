@@ -9,17 +9,19 @@ class InicioButton extends StatelessWidget {
     required this.height,
     required this.width,
     required this.text,
+    required this.route,
   }) : super(key: key);
 
   final double height;
   final double width;
   final String text;
+  final String route;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Modular.to.pushNamed("/cadastro");
+        Modular.to.pushNamed(route);
       },
       child: Container(
         height: height,

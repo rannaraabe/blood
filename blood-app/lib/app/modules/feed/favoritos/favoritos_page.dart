@@ -11,14 +11,26 @@ import 'package:tuple/tuple.dart';
 import '../widgets/card_child_feed.dart';
 import 'widgets/card_child_favoritos.dart';
 
-class FavoritosPage extends StatelessWidget {
+class FavoritosPage extends StatefulWidget {
+  FavoritosPage({
+    Key? key,
+    required this.originalList,
+  }) : super(key: key);
+
+  final List<CardChildFeed> originalList;
+
+  @override
+  State<FavoritosPage> createState() => _FavoritosPageState();
+}
+
+class _FavoritosPageState extends State<FavoritosPage> {
   List<CardChildFavoritos> cardChildFavoritsList = [];
 
   Future<void> buildCardFavChilds() async {
     // print("LIST LENGTH -> " + originalList.length.toString());
     // TODO: do a for loop instead, recovering registered starred publication data from backend
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    originalList.forEach((publication) {
+    widget.originalList.forEach((publication) {
       /*  print("ID -> " + prefs.getBool(publication.id.toString()).toString());
       print("#1 -> " +
           (prefs.getBool(publication.id.toString()) != null).toString());
@@ -68,13 +80,6 @@ class FavoritosPage extends StatelessWidget {
       children: cards,
     );
   }
-
-  FavoritosPage({
-    Key? key,
-    required this.originalList,
-  }) : super(key: key);
-
-  final List<CardChildFeed> originalList;
 
   @override
   Widget build(BuildContext context) {

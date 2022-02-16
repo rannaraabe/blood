@@ -8,6 +8,7 @@ import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
 import 'package:tuple/tuple.dart';
 
+import 'feed_controller.dart';
 import 'filtros/filtros_page.dart';
 import 'publicacao/publicacao_page.dart';
 import 'publicacao/widgets/dropdown_button_publicacao.dart';
@@ -16,8 +17,14 @@ import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
 import 'package:http/http.dart' as http;
 
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
+  @override
+  State<FeedPage> createState() => _FeedPageState();
+}
+
+class _FeedPageState extends State<FeedPage> {
   List<CardChildFeed> cardChildFeedList = [];
+  FeedController feedController = FeedController();
 
   void buildCardChilds(List<dynamic> publications) {
     publications.forEach((publication) => {
