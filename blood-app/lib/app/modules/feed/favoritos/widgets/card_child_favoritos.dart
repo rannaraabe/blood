@@ -1,5 +1,8 @@
 import 'package:blood_app/app/modules/feed/widgets/label_urgency.dart';
+import 'package:blood_app/app/modules/mapa/widgets/mapa_utils.dart';
+import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:tuple/tuple.dart';
 
 class CardChildFavoritos extends StatelessWidget {
   const CardChildFavoritos({
@@ -18,7 +21,7 @@ class CardChildFavoritos extends StatelessWidget {
   final String donee;
   final String bloodType;
   final int age;
-  final String donationCenter;
+  final Tuple2 donationCenter;
   final String urgencyLevel;
 
   @override
@@ -52,7 +55,13 @@ class CardChildFavoritos extends StatelessWidget {
                         height: height * 0.001,
                       ),
                       Text(
-                        '$age anos, 20 km de distância',
+                        '$age anos, ' + latLongDistance(
+                                EasyRequest.user_location.item1,
+                                EasyRequest.user_location.item2,
+                                donationCenter.item1,
+                                donationCenter.item2)
+                            .toStringAsFixed(2) +
+                        'km',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w400,

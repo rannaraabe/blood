@@ -8,6 +8,7 @@ class FavoritosModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute(Modular.initialRoute, child: (_, args) => FavoritosPage()),
+    ChildRoute(Modular.initialRoute,
+        child: (_, args) => FavoritosPage(originalList: [])),
   ];
 }

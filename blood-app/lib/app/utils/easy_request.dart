@@ -1,15 +1,19 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:blood_app/app/utils/backend_routes.dart';
 import 'package:blood_app/app/utils/token.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
+import 'package:tuple/tuple.dart';
 
 class EasyRequest {
   EasyRequest._();
 
   static Token token = Token(jwt: "BLOOD ");
   static String username = "";
+  static String user_id = "";
+  static Tuple2<double, double> user_location = Tuple2(0.0, 0.0);
   static String expired_token =
       'eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJJc3N1ZXIiOiJJc3N1ZXIiLCJVc2VybmFtZSI6IkphdmFJblVzZSIsImV4cCI6MTY0Mjk5Njk0OSwiaWF0IjoxNjQyOTEwNTQ5fQ.s1DEKRaQad8JWpnos4GlmPzag2Phb4-_v1kTszrVtc8';
 
@@ -47,9 +51,7 @@ class EasyRequest {
 
   static Future<http.Response> fetchUser(String username) async {
     return await http.get(
-      Uri.parse(
-          "https://blood-backend2.herokuapp.com/usuario/byusername?username=" +
-              username),
+      Uri.parse(BackendRoutes.USER_BYUSERNAME + username),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
         //'Authorization':
@@ -57,5 +59,42 @@ class EasyRequest {
         'Authorization': token.jwt
       },
     );
+  }
+
+  static Future<http.Response> fetchPublications() async {
+    return await http.get(
+      Uri.parse(BackendRoutes.PUBLICATION),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization': token.jwt
+      },
+    );
+  }
+
+  static Future<http.Response> cadastrarPublicacao(
+      String unidadeDoacao,
+      String usuario,
+      String nomeDonatario,
+      String imageCode,
+      String idadeDonatario,
+      String dataCriacao,
+      String prioridade,
+      String tipoSanguineo) async {
+    print("CADASTRANDO");
+    return await http.post(Uri.parse(BackendRoutes.PUBLICATION),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': token.jwt
+        },
+        body: jsonEncode(<String, String>{
+          "unidadeDoacao": unidadeDoacao,
+          "usuario": usuario,
+          "nomeDonatario": nomeDonatario,
+          "imageCode": imageCode,
+          "idadeDonatario": idadeDonatario,
+          "dataCriacao": dataCriacao,
+          "prioridade": prioridade,
+          "tipoSanguineo": tipoSanguineo
+        }));
   }
 }

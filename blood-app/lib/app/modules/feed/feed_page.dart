@@ -1,47 +1,63 @@
+import 'dart:convert';
+
 import 'package:blood_app/app/design_system/top_box_gradient.dart';
 import 'package:blood_app/app/modules/feed/favoritos/favoritos_page.dart';
 import 'package:blood_app/app/modules/feed/widgets/side_gradient.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuple/tuple.dart';
 
+import 'feed_controller.dart';
 import 'filtros/filtros_page.dart';
 import 'publicacao/publicacao_page.dart';
+import 'publicacao/widgets/dropdown_button_publicacao.dart';
 import 'widgets/card_child_feed.dart';
 import 'widgets/card_feed.dart';
 import 'widgets/info_feed.dart';
+import 'package:http/http.dart' as http;
 
-class FeedPage extends StatelessWidget {
+class FeedPage extends StatefulWidget {
+  @override
+  State<FeedPage> createState() => _FeedPageState();
+}
+
+class _FeedPageState extends State<FeedPage> {
   List<CardChildFeed> cardChildFeedList = [];
+  FeedController feedController = FeedController();
 
-  void buildCardChilds() {
-    // TODO: do a for loop instead, recovering registered publication data from backend
-    cardChildFeedList.add(
-      CardChildFeed(
-        image: Image.asset(
-          'assets/images/feed_image.png',
-        ),
-        publicationHour: '1 minuto',
-        donee: 'Maria Luiza',
-        bloodType: '0-',
-        age: 6,
-        donationCenter: 'Associação de deficientes físicos',
-        urgencyLevel: 'Urgente',
-      ),
-    );
-    cardChildFeedList.add(
-      CardChildFeed(
-        image: Image.asset(
-          'assets/images/feed_image2.jpg',
-        ),
-        publicationHour: '25 minutos',
-        donee: 'Letícia Duarte',
-        bloodType: 'B+',
-        age: 5,
-        donationCenter: 'Associação de deficientes físicos',
-        urgencyLevel: 'Urgente',
-      ),
-    );
+  void buildCardChilds(List<dynamic> publications) {
+    publications.forEach((publication) => {
+          cardChildFeedList.add(
+            CardChildFeed(
+              id: publication['id'],
+              image: Image.asset(
+                'assets/images/feed_image.png',
+              ),
+              publicationHour: DateTime.now()
+                      .difference(DateTime.parse(
+                          publication['dataDeCriacao'].toString()))
+                      .inHours
+                      .toString() +
+                  "Horas", // Definir melhor para casos com maior e menor duração ex: 30 min, 2 dias
+              donee: publication['nomeDonatario'],
+              bloodType: getBloodType(publication['tipoSanguineo'].toString()),
+              age: ((DateTime.now()
+                          .difference(DateTime.parse(
+                              publication['idadeDonatario'].toString()))
+                          .inDays) /
+                      365)
+                  .floor(),
+              donationCenter: Tuple2(
+                  publication['unidadeDeDoacao']['endereco']['latitude'],
+                  publication['unidadeDeDoacao']['endereco']['longitude']),
+              urgencyLevel:
+                  getUrgencyLevel(publication['prioridade'].toString()),
+              isFavorite: false,
+            ),
+          )
+        });
   }
 
   Widget feedCards(width, height) {
@@ -72,7 +88,8 @@ class FeedPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
-    buildCardChilds();
+    List<CardChildFeed> originalList = cardChildFeedList;
+    //buildCardChilds();
 
     void _showModalBottom(context, widget) {
       FocusManager.instance.primaryFocus?.unfocus();
@@ -88,6 +105,25 @@ class FeedPage extends StatelessWidget {
           backgroundColor: Colors.white,
           builder: (BuildContext bc) {
             return Container(height: height * 0.95, child: widget);
+          });
+    }
+
+    void _showModalBottomFavoritos(context) {
+      FocusManager.instance.primaryFocus?.unfocus();
+
+      showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30.0),
+                topRight: Radius.circular(30.0)),
+          ),
+          backgroundColor: Colors.white,
+          builder: (BuildContext bc) {
+            return Container(
+                height: height * 0.95,
+                child: FavoritosPage(originalList: originalList));
           });
     }
 
@@ -131,7 +167,7 @@ class FeedPage extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
                   onHorizontalDragStart: (dragStartDetails) {
-                    _showModalBottom(context, FavoritosPage());
+                    _showModalBottomFavoritos(context);
                   },
                   child: SideGradient(),
                 ),
@@ -167,11 +203,32 @@ class FeedPage extends StatelessWidget {
                   SizedBox(
                     height: height * 0.03,
                   ),
-                  SizedBox(
-                    width: width * 0.9,
-                    height: height * 0.65,
-                    child: feedCards(width, height),
-                  ),
+                  FutureBuilder<http.Response>(
+                      future: EasyRequest.fetchPublications(),
+                      builder: (context, snapshot) {
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: CircularProgressIndicator(
+                                color: AppTheme.strongRed),
+                          );
+                        } else if (snapshot.hasData) {
+                          print("PUBLICATION");
+                          print(snapshot.data?.body);
+                          List<dynamic> jsonData =
+                              jsonDecode(snapshot.data!.body);
+
+                          buildCardChilds(jsonData);
+                          //return Text("Carregou");
+                          //Publicacao publicacao = Usuario.fromJson(json.decode(snapshot.data!.body));
+                          return SizedBox(
+                            width: width * 0.9,
+                            height: height * 0.65,
+                            child: feedCards(width, height),
+                          );
+                        } else {
+                          return Text("Algo de errado não está certo");
+                        }
+                      }),
                 ],
               ),
             ),

@@ -1,11 +1,21 @@
+import 'dart:ffi';
+
 import 'package:blood_app/app/modules/feed/widgets/label_urgency.dart';
 import 'package:blood_app/app/modules/inicio/widgets/inicio_button.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
+import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tuple/tuple.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class CardChildFeed extends StatelessWidget {
-  const CardChildFeed({
+import '../../mapa/widgets/mapa_utils.dart';
+
+class CardChildFeed extends StatefulWidget {
+  CardChildFeed({
     Key? key,
+    required this.id,
     required this.image,
     required this.publicationHour,
     required this.donee,
@@ -13,21 +23,41 @@ class CardChildFeed extends StatelessWidget {
     required this.age,
     required this.donationCenter,
     required this.urgencyLevel,
+    required this.isFavorite,
   }) : super(key: key);
 
+  final id;
   final Image image;
   final String publicationHour;
   final String donee;
   final String bloodType;
   final int age;
-  final String donationCenter;
+  final Tuple2 donationCenter;
   final String urgencyLevel;
+  bool isFavorite;
+
+  @override
+  State<CardChildFeed> createState() => _CardChildFeedState();
+}
+
+class _CardChildFeedState extends State<CardChildFeed> {
+  Future<void> setFavorite() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    if ((prefs.getBool(widget.id.toString()) != null) &&
+        (prefs.getBool(widget.id.toString()) == true)) {
+      setState(() {
+        widget.isFavorite = true;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     final height = MediaQuery.of(context).size.height;
     final edgeInsets = EdgeInsets.fromLTRB(width * 0.04, 0.0, 0, width * 0.006);
+    // bool isFavorite = false;
+
     return Column(
       children: [
         Stack(
@@ -39,7 +69,12 @@ class CardChildFeed extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 border: Border.all(color: Colors.white, width: 3.0),
               ),
-              child: image,
+              child: ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(35),
+                    topRight: Radius.circular(35),
+                  ),
+                  child: widget.image),
             ),
             Align(
               alignment: Alignment.topRight,
@@ -49,7 +84,7 @@ class CardChildFeed extends StatelessWidget {
                 child: LabelUrgency(
                   height: height * 0.035,
                   width: width * 0.27,
-                  text: urgencyLevel,
+                  text: widget.urgencyLevel,
                 ),
               ),
             ),
@@ -61,15 +96,35 @@ class CardChildFeed extends StatelessWidget {
               child: Container(
                 height: height * 0.055,
                 width: height * 0.055,
-                child: FloatingActionButton(
-                  child: Image.asset(
-                    'assets/images/hearth.png',
-                    height: height * 0.44,
-                    width: width * 0.44,
-                  ),
-                  backgroundColor: Colors.white,
-                  onPressed: () {},
-                ),
+                child: FutureBuilder<void>(
+                    future: setFavorite(),
+                    builder: (context, snapshot) {
+                      return FloatingActionButton(
+                        child: Icon(
+                          Icons.favorite,
+                          color: (widget.isFavorite)
+                              ? AppTheme.red
+                              : AppTheme.grey,
+                          size: 25,
+                        ),
+                        backgroundColor: Colors.white,
+                        onPressed: () async {
+                          setState(() {
+                            widget.isFavorite = !widget.isFavorite;
+                          });
+                          SharedPreferences prefs =
+                              await SharedPreferences.getInstance();
+                          bool? isAFavoritePublication =
+                              prefs.getBool(this.widget.id.toString());
+                          if (isAFavoritePublication != null) {
+                            prefs.setBool(this.widget.id.toString(),
+                                !isAFavoritePublication);
+                          } else {
+                            prefs.setBool(this.widget.id.toString(), true);
+                          }
+                        },
+                      );
+                    }),
               ),
             ),
           ],
@@ -83,7 +138,7 @@ class CardChildFeed extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Há $publicationHour',
+                    'Há ${widget.publicationHour}',
                     style: TextStyle(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -94,7 +149,7 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.006,
                   ),
                   Text(
-                    donee,
+                    widget.donee,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w600,
@@ -104,7 +159,14 @@ class CardChildFeed extends StatelessWidget {
                     height: height * 0.001,
                   ),
                   Text(
-                    '$age anos, 20 km de distância',
+                    '${widget.age} anos, ' +
+                        latLongDistance(
+                                EasyRequest.user_location.item1,
+                                EasyRequest.user_location.item2,
+                                widget.donationCenter.item1,
+                                widget.donationCenter.item2)
+                            .toStringAsFixed(2) +
+                        'km',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
@@ -146,7 +208,7 @@ class CardChildFeed extends StatelessWidget {
                       Image.asset('assets/images/blood_drop.png'),
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
-                        child: Text(bloodType,
+                        child: Text(widget.bloodType,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -161,11 +223,36 @@ class CardChildFeed extends StatelessWidget {
             ],
           ),
         ),
-        InicioButton(
+        /* InicioButton(
           height: height * 0.06,
           width: width * 0.6,
           text: 'Doar',
-        ),
+          route: "",
+        ), */
+        GestureDetector(
+          onTap: () {
+            launch("tel://3232-6701");
+          },
+          child: Container(
+            height: height * 0.06,
+            width: width * 0.6,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(18.0),
+              color: AppTheme.black,
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Doar",
+                    style: AppTheme.regular_small_white,
+                    textAlign: TextAlign.center,
+                  ),
+                )
+              ],
+            ),
+          ),
+        )
       ],
     );
   }

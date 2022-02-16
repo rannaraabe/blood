@@ -1,4 +1,4 @@
-
+import 'package:blood_app/app/utils/easy_request.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter_map/flutter_map.dart';
@@ -146,6 +146,7 @@ class _MapAppState extends State<MapApp> {
                 if (snapshot.hasData) {
                   final latitude = snapshot.data!.latitude;
                   final longitude = snapshot.data!.longitude;
+                  EasyRequest.user_location = Tuple2(latitude, longitude);
 
                   return FlutterMap(
                     mapController: _mapController,
