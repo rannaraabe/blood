@@ -159,14 +159,21 @@ class _CardChildFeedState extends State<CardChildFeed> {
                     height: height * 0.001,
                   ),
                   Text(
-                    '${widget.age} anos, ' +
+                    '${widget.age} anos',
+                    style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                  Text(
+                    'Há ' +
                         latLongDistance(
                                 EasyRequest.user_location.item1,
                                 EasyRequest.user_location.item2,
                                 widget.donationCenter.item1,
                                 widget.donationCenter.item2)
                             .toStringAsFixed(2) +
-                        'km',
+                        'km de distância',
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.w400,
@@ -175,24 +182,24 @@ class _CardChildFeedState extends State<CardChildFeed> {
                   SizedBox(
                     height: height * 0.007,
                   ),
-                  Row(
-                    children: [
-                      Icon(
-                        IconData(0xe3ab, fontFamily: 'MaterialIcons'),
-                        color: Color(0XFFCCCCCC),
-                        size: width * 0.06,
-                      ),
-                      Text(
-                        'Clique aqui para saber onde doar',
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w400,
-                          color: Color(0XFF3480C7),
-                          decoration: TextDecoration.underline,
-                        ),
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     Icon(
+                  //       IconData(0xe3ab, fontFamily: 'MaterialIcons'),
+                  //       color: Color(0XFFCCCCCC),
+                  //       size: width * 0.06,
+                  //     ),
+                  //     Text(
+                  //       'Clique aqui para saber onde doar',
+                  //       style: TextStyle(
+                  //         fontSize: 15,
+                  //         fontWeight: FontWeight.w400,
+                  //         color: Color(0XFF3480C7),
+                  //         decoration: TextDecoration.underline,
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
                   SizedBox(
                     height: height * 0.017,
                   ),
@@ -202,7 +209,7 @@ class _CardChildFeedState extends State<CardChildFeed> {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        left: width * 0.009, bottom: height * 0.02),
+                        left: width * 0.035, bottom: height * 0.02),
                     child:
                         Stack(alignment: Alignment.center, children: <Widget>[
                       Image.asset('assets/images/blood_drop.png'),
