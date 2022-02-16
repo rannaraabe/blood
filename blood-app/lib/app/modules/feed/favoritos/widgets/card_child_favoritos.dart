@@ -55,13 +55,14 @@ class CardChildFavoritos extends StatelessWidget {
                         height: height * 0.001,
                       ),
                       Text(
-                        '$age anos, ' + latLongDistance(
-                                EasyRequest.user_location.item1,
-                                EasyRequest.user_location.item2,
-                                donationCenter.item1,
-                                donationCenter.item2)
-                            .toStringAsFixed(2) +
-                        'km',
+                        '$age anos, ' +
+                            latLongDistance(
+                                    EasyRequest.user_location.item1,
+                                    EasyRequest.user_location.item2,
+                                    donationCenter.item1,
+                                    donationCenter.item2)
+                                .toStringAsFixed(2) +
+                            'km',
                         style: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w400,

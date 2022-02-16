@@ -1,7 +1,10 @@
+import 'package:blood_app/app/modules/conteudo/requisitos/conteudo_requisitos_module.dart';
 import 'package:blood_app/app/modules/conteudo/widgets/info_card1_conteudo.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
+import 'requisitos/conteudo_requisitos_module.dart';
 import 'widgets/card_conteudo.dart';
 import 'widgets/info_card2_conteudo.dart';
 import 'widgets/info_card3_conteudo.dart';
@@ -89,7 +92,9 @@ class ConteudoPage extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     children: <Widget>[
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Modular.to.pushNamed('/conteudo/requisitos');
+                        },
                         child: CardConteudo(
                           backgroundColor: Colors.black,
                           borderColor: AppTheme.grey,
@@ -102,7 +107,9 @@ class ConteudoPage extends StatelessWidget {
                         width: width * 0.06,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Modular.to.pushNamed('/conteudo/impedimentos');
+                        },
                         child: CardConteudo(
                           backgroundColor: Colors.black,
                           borderColor: AppTheme.grey,
@@ -117,7 +124,8 @@ class ConteudoPage extends StatelessWidget {
                 SizedBox(
                   height: height * 0.035,
                 ),
-                Image.asset('assets/images/blood_drop.png',
+                Image.asset(
+                  'assets/images/blood_drop.png',
                   width: 50,
                   height: 50,
                 ),
