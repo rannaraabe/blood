@@ -214,4 +214,15 @@ class AppTheme {
     fontFamily: 'IBM Plex Sans',
     color: Colors.black54,
   );
+
+  static const TextStyle medium_regular = TextStyle(
+    fontSize: 19,
+    fontWeight: FontWeight.w400,
+  );
+
+  static const TextStyle bold_title = TextStyle(
+    fontSize: 23,
+    fontWeight: FontWeight.bold,
+    color: Color(0xFFFF0032),
+  );
 }
