@@ -11,14 +11,14 @@ class ConteudoRequisitosPage extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
         color: Colors.white,
-        child: SafeArea(
-          child: SingleChildScrollView(
-            reverse: true,
-            child: Padding(
-              padding: EdgeInsets.all(32),
-              child: Column(
+        child: Padding(
+          padding: EdgeInsets.all(32),
+          child: ListView(
+            children: <Widget>[
+              Column(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
@@ -90,7 +90,7 @@ class ConteudoRequisitosPage extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
+            ],
           ),
         ),
       ),
