@@ -7,6 +7,8 @@ import 'modules/inicio/inicio_module.dart';
 import 'modules/cadastro/cadastro_module.dart';
 import 'modules/conta/conta_module.dart';
 import 'modules/conteudo/conteudo_module.dart';
+import 'modules/conteudo/impedimentos/conteudo_impedimentos_module.dart';
+import 'modules/conteudo/requisitos/conteudo_requisitos_module.dart';
 import 'modules/login/login_module.dart';
 import 'modules/main/main_module.dart';
 
@@ -25,6 +27,8 @@ class AppModule extends Module {
     ModuleRoute('/feed', module: FeedModule()),
     ModuleRoute('/conta', module: ContaModule()),
     ModuleRoute('/conteudo', module: ConteudoModule()),
+    ModuleRoute('/conteudo/requisitos', module: ConteudoRequisitosModule()),
+    ModuleRoute('/conteudo/impedimentos', module: ConteudoImpedimentosModule()),
     ModuleRoute('/mapa', module: MapaModule()),
   ];
 }

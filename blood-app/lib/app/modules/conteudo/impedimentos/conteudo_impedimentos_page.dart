@@ -1,6 +1,7 @@
 import 'package:blood_app/app/modules/conteudo/widgets/info_card1_conteudo.dart';
 import 'package:blood_app/app/theme/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class ConteudoImpedimentosPage extends StatelessWidget {
   @override
@@ -25,7 +26,7 @@ class ConteudoImpedimentosPage extends StatelessWidget {
                         padding: const EdgeInsets.fromLTRB(15, 15, 0, 10),
                         child: GestureDetector(
                           onTap: () {
-                            // Modular.to.pushNamed(Modular.ConteudoModule);
+                            Modular.to.pushNamed('/conteudo');
                           },
                           child: Icon(Icons.arrow_back_ios),
                         ),
