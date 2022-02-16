@@ -159,10 +159,14 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
     TextEditingController doneeNameController = TextEditingController();
     TextEditingController ageController = TextEditingController();
 
-    return Scaffold(
-        body: SafeArea(
+    return Padding(
+        padding: EdgeInsets.only(top: height * 0.01),
+        child: SizedBox(
+          width: width,
+          height: height * 0.75,
+          child: Padding(
+            padding: MediaQuery.of(context).viewInsets,
             child: SingleChildScrollView(
-                reverse: true,
                 child: Padding(
                   padding: const EdgeInsets.all(32.0),
                   child: Column(
@@ -245,9 +249,10 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                             'B+',
                             'AB+',
                             'O+',
+                            'O-',
                             'A-',
                             'B-',
-                            'AB-'
+                            'AB-',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -411,6 +416,8 @@ class _PublicacaoPageState extends State<PublicacaoPage> {
                           )),
                     ],
                   ),
-                ))));
+                )),
+          ),
+        ));
   }
 }
